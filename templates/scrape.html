@@ -1,0 +1,230 @@
+{% extends "base.html" %}
+
+{% block title %}Novi Scraping - PDF Scraper{% endblock %}
+
+{% block extra_css %}
+<style>
+    .source-card {
+        cursor: pointer;
+        transition: all 0.3s;
+        border: 2px solid rgba(255, 255, 255, 0.1);
+        background: rgba(22, 33, 62, 0.6);
+        backdrop-filter: blur(10px);
+    }
+    .source-card:hover {
+        border-color: var(--primary-color);
+        transform: translateY(-5px);
+        box-shadow: 0 8px 24px rgba(102, 126, 234, 0.3);
+        background: rgba(102, 126, 234, 0.15);
+    }
+    .source-card.selected {
+        border-color: var(--primary-color);
+        background: rgba(102, 126, 234, 0.2);
+        box-shadow: 0 0 20px rgba(102, 126, 234, 0.4);
+    }
+    .source-card .card-title {
+        color: var(--text-primary) !important;
+        font-weight: 600;
+    }
+    .source-card .card-text {
+        color: var(--text-secondary) !important;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="row mb-4">
+    <div class="col">
+        <h1 class="display-5">
+            <i class="bi bi-play-circle"></i> Novi Scraping
+        </h1>
+        <p class="lead">Pokrenite novi scraping job za preuzimanje PDF dokumenata</p>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-lg-8">
+        <div class="card shadow">
+            <div class="card-body p-4">
+                <form method="POST" action="" id="scrapingForm">
+                    {{ form.hidden_tag() }}
+                    
+                    <!-- Kategorija -->
+                    <div class="mb-4">
+                        <label class="form-label h5 text-white">
+                            <i class="bi bi-folder-fill"></i> 1. Izaberite Kategoriju
+                        </label>
+                        <div class="row g-3" id="categorySelection">
+                            {% for value, label in form.category.choices %}
+                            <div class="col-md-6">
+                                <div class="source-card card h-100 category-option" data-category="{{ value }}">
+                                    <div class="card-body text-center">
+                                        <div class="mb-3">
+                                            {% if value == 'books' %}
+                                                <i class="bi bi-book-fill" style="font-size: 2.5rem; color: var(--primary-color);"></i>
+                                            {% elif value == 'research' %}
+                                                <i class="bi bi-journal-text" style="font-size: 2.5rem; color: var(--success-color);"></i>
+                                            {% elif value == 'magazines' %}
+                                                <i class="bi bi-newspaper" style="font-size: 2.5rem; color: var(--info-color);"></i>
+                                            {% else %}
+                                                <i class="bi bi-file-earmark-fill" style="font-size: 2.5rem; color: var(--warning-color);"></i>
+                                            {% endif %}
+                                        </div>
+                                        <h5 class="card-title mb-0">
+                                            {% if value == 'books' %}
+                                                Knjige
+                                            {% elif value == 'research' %}
+                                                Naučni Radovi
+                                            {% elif value == 'magazines' %}
+                                                Časopisi
+                                            {% else %}
+                                                Dokumenti
+                                            {% endif %}
+                                        </h5>
+                                    </div>
+                                </div>
+                            </div>
+                            {% endfor %}
+                        </div>
+                        {{ form.category(class="d-none", id="categoryInput") }}
+                    </div>
+                    
+                    <!-- Izvor -->
+                    <div class="mb-4" id="sourceSection" style="display: none;">
+                        <label class="form-label h5 text-white">
+                            <i class="bi bi-globe2"></i> 2. Izaberite Izvor
+                        </label>
+                        <div id="sourcesList" class="row g-3">
+                            <!-- Popunjava se dinamički -->
+                        </div>
+                        {{ form.source(class="d-none", id="sourceInput") }}
+                    </div>
+                    
+                    <!-- Pretraga -->
+                    <div class="mb-4" id="querySection" style="display: none;">
+                        <label class="form-label h5 text-white">
+                            <i class="bi bi-search"></i> 3. Pretraga (opcionalno)
+                        </label>
+                        {{ form.query(class="form-control form-control-lg", placeholder="npr. machine learning, python...") }}
+                        <small class="form-text text-visible">
+                            Unesite ključne reči za pretragu (npr. "machine learning", "python")
+                        </small>
+                    </div>
+                    
+                    <!-- Limit -->
+                    <div class="mb-4" id="limitSection" style="display: none;">
+                        <label class="form-label h5 text-white">
+                            <i class="bi bi-sliders"></i> 4. Broj Rezultata
+                        </label>
+                        {{ form.max_results(class="form-control form-control-lg") }}
+                        <small class="form-text text-visible">
+                            Maksimalan broj PDF fajlova za preuzimanje (1-500)
+                        </small>
+                    </div>
+                    
+                    <!-- Submit -->
+                    <div class="d-grid gap-2" id="submitSection" style="display: none;">
+                        {{ form.submit(class="btn btn-primary btn-lg") }}
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Help Sidebar -->
+    <div class="col-lg-4">
+        <div class="card shadow-lg">
+            <div class="card-body">
+                <h5 class="card-title text-white mb-4">
+                    <i class="bi bi-info-circle-fill me-2"></i> Pomoć
+                </h5>
+                <p class="text-white mb-3">
+                    <strong>Kako radi scraping?</strong>
+                </p>
+                <ol class="text-visible">
+                    <li class="mb-2">Izaberite kategoriju dokumenata</li>
+                    <li class="mb-2">Odaberite izvor podataka</li>
+                    <li class="mb-2">Opcionalno unesite pretragu</li>
+                    <li class="mb-2">Postavite broj rezultata</li>
+                    <li class="mb-2">Pokrenite scraping</li>
+                </ol>
+                <hr style="border-color: rgba(255,255,255,0.2);">
+                <p class="text-white mb-3">
+                    <strong>Dostupni izvori:</strong>
+                </p>
+                <ul class="text-visible">
+                    <li class="mb-2"><strong class="text-gradient">arXiv</strong> - Naučni radovi</li>
+                    <li class="mb-2"><strong class="text-gradient">PubMed</strong> - Medicinski članci</li>
+                    <li class="mb-2"><strong class="text-gradient">Gutenberg</strong> - Besplatne knjige</li>
+                    <li class="mb-2"><strong class="text-gradient">Archive.org</strong> - Časopisi</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+// Sources data
+const sourcesData = {{ sources_by_category|tojson }};
+
+// Category selection
+document.querySelectorAll('.category-option').forEach(card => {
+    card.addEventListener('click', function() {
+        // Ukloni selected sa svih
+        document.querySelectorAll('.category-option').forEach(c => 
+            c.classList.remove('selected'));
+        
+        // Dodaj selected na kliknuti
+        this.classList.add('selected');
+        
+        // Postavi vrednost
+        const category = this.dataset.category;
+        document.getElementById('categoryInput').value = category;
+        
+        // Učitaj izvore
+        loadSources(category);
+    });
+});
+
+function loadSources(category) {
+    const sourcesList = document.getElementById('sourcesList');
+    const sources = sourcesData[category] || [];
+    
+    sourcesList.innerHTML = '';
+    
+    sources.forEach(source => {
+        const col = document.createElement('div');
+        col.className = 'col-md-12';
+        
+        const card = document.createElement('div');
+        card.className = 'source-card card source-option';
+        card.dataset.source = source.name;
+        
+        card.innerHTML = `
+            <div class="card-body">
+                <h6 class="card-title mb-1 text-white"><i class="bi bi-globe2 me-2"></i>${source.name}</h6>
+                <p class="card-text small text-visible mb-0">${source.description}</p>
+            </div>
+        `;
+        
+        card.addEventListener('click', function() {
+            document.querySelectorAll('.source-option').forEach(c => 
+                c.classList.remove('selected'));
+            this.classList.add('selected');
+            document.getElementById('sourceInput').value = source.name;
+            
+            // Prikaži preostale sekcije
+            document.getElementById('querySection').style.display = 'block';
+            document.getElementById('limitSection').style.display = 'block';
+            document.getElementById('submitSection').style.display = 'block';
+        });
+        
+        col.appendChild(card);
+        sourcesList.appendChild(col);
+    });
+    
+    // Prikaži source section
+    document.getElementById('sourceSection').style.display = 'block';
+}
+</script>
+{% endblock %}

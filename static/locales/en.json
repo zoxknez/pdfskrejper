@@ -1,0 +1,155 @@
+{
+  "nav": {
+    "brand": "PDF Scraper",
+    "dashboard": "Dashboard",
+    "scrape": "Scrape",
+    "files": "Files",
+    "profile": "Profile",
+    "logout": "Logout"
+  },
+  "auth": {
+    "login": {
+      "title": "Welcome Back",
+      "subtitle": "Sign in to your account",
+      "username": "Username",
+      "password": "Password",
+      "remember": "Remember me",
+      "submit": "Sign In",
+      "noAccount": "Don't have an account?",
+      "register": "Register"
+    },
+    "register": {
+      "title": "Create Account",
+      "subtitle": "Start your scraping journey",
+      "username": "Username",
+      "email": "Email address",
+      "password": "Password",
+      "confirmPassword": "Confirm password",
+      "submit": "Register",
+      "haveAccount": "Already have an account?",
+      "login": "Sign In"
+    }
+  },
+  "dashboard": {
+    "title": "Dashboard",
+    "subtitle": "Overview of your activities",
+    "stats": {
+      "totalJobs": "Total Jobs",
+      "completed": "Completed",
+      "totalFiles": "Total Files"
+    },
+    "quickActions": {
+      "title": "Quick Actions",
+      "newScrape": "New Scraping",
+      "viewFiles": "View Files"
+    },
+    "recentJobs": {
+      "title": "Recent Jobs",
+      "category": "Category",
+      "source": "Source",
+      "status": "Status",
+      "progress": "Progress",
+      "actions": "Actions",
+      "view": "View",
+      "empty": "You don't have any scraping jobs yet",
+      "startFirst": "Start your first scraping"
+    }
+  },
+  "scrape": {
+    "title": "New Scraping",
+    "subtitle": "Configure and start a scraping job",
+    "step1": {
+      "title": "1. Choose Category",
+      "books": "Books",
+      "research": "Research Papers",
+      "magazines": "Magazines",
+      "documents": "Documents"
+    },
+    "step2": {
+      "title": "2. Select Source"
+    },
+    "step3": {
+      "title": "3. Search Criteria (optional)",
+      "placeholder": "e.g. machine learning, python..."
+    },
+    "step4": {
+      "title": "4. Number of Results"
+    },
+    "submit": "Start Scraping",
+    "help": {
+      "title": "Help",
+      "howItWorks": "How does scraping work?",
+      "steps": {
+        "1": "Choose document category",
+        "2": "Select data source",
+        "3": "Optionally enter search query",
+        "4": "Set number of results",
+        "5": "Start scraping"
+      },
+      "sources": {
+        "title": "Available sources:",
+        "arxiv": "arXiv - Research papers",
+        "pubmed": "PubMed - Medical articles",
+        "gutenberg": "Gutenberg - Free books",
+        "archive": "Archive.org - Magazines"
+      }
+    }
+  },
+  "files": {
+    "title": "My Files",
+    "subtitle": "All your downloaded PDFs",
+    "filter": {
+      "category": "Category",
+      "allCategories": "All categories",
+      "search": "Search files...",
+      "submit": "Filter"
+    },
+    "total": "Total",
+    "filesCount": "files",
+    "table": {
+      "filename": "Filename",
+      "category": "Category",
+      "size": "Size",
+      "date": "Date",
+      "actions": "Actions",
+      "download": "Download"
+    },
+    "empty": {
+      "title": "You don't have any files yet",
+      "subtitle": "Start scraping to download PDF files",
+      "button": "Start Scraping"
+    }
+  },
+  "profile": {
+    "title": "Profile",
+    "subtitle": "Your information and statistics",
+    "info": {
+      "title": "Account Information",
+      "username": "Username",
+      "email": "Email",
+      "joined": "Joined",
+      "lastLogin": "Last login"
+    },
+    "stats": {
+      "title": "Activity Statistics"
+    }
+  },
+  "common": {
+    "loading": "Loading...",
+    "error": "Error",
+    "success": "Success",
+    "cancel": "Cancel",
+    "save": "Save",
+    "delete": "Delete",
+    "edit": "Edit",
+    "back": "Back",
+    "next": "Next",
+    "previous": "Previous",
+    "search": "Search",
+    "filter": "Filter",
+    "clear": "Clear"
+  },
+  "footer": {
+    "copyright": "© 2025 PDF Scraper. All rights reserved."
+  }
+}

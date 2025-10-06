@@ -1,0 +1,127 @@
+Category,Subcategory,Source,URL,API_or_Feed,Notes
+Akademski,Preprinti,arXiv,https://arxiv.org,API/Atom,Otvoreni preprinti; koristiti njihov API/Atom feed.
+Akademski,Preprinti,bioRxiv,https://www.biorxiv.org,API/JSON,bioRxiv/medRxiv zajednički API.
+Akademski,Preprinti,medRxiv,https://www.medrxiv.org,API/JSON,Isto kao bioRxiv.
+Akademski,Preprinti,OSF Preprints,https://osf.io/preprints/,API/JSON,OSF API (projekti i preprinti).
+Akademski,Preprinti,SSRN,https://www.ssrn.com,Web/RSS,Proveri ToS; uglavnom metadata.
+Akademski,Preprinti,HAL,https://hal.science,API/OAI-PMH,Preprinti/teze; OAI-PMH.
+Akademski,Preprinti,RePEc/IDEAS,https://ideas.repec.org,Web/RSS,Ekonomski radovi (radne verzije).
+Akademski,Preprinti,OpenReview,https://openreview.net,API,Radovi i recenzije (ICLR itd.).
+Akademski,Preprinti,CORE,https://core.ac.uk,API,OA agregator (ograničenja).
+Akademski,Preprinti,BASE,https://www.base-search.net,Web/API,Agregator akademskih radova.
+Akademski,Časopisi/OA,DOAJ,https://doaj.org,API,OA časopisi/članci.
+Akademski,Časopisi/OA,PubMed,https://pubmed.ncbi.nlm.nih.gov,API (E-utilities),Medicinski/biomed zapisi.
+Akademski,Časopisi/OA,PubMed Central (PMC),https://www.ncbi.nlm.nih.gov/pmc/,Bulk/API,OA full text.
+Akademski,Časopisi/OA,Europe PMC,https://europepmc.org,API,OA + citati.
+Akademski,Časopisi/OA,PLOS,https://plos.org,API,OA izdavač.
+Akademski,Časopisi/OA,eLife,https://elifesciences.org,API,OA časopis.
+Akademski,Časopisi/OA,Frontiers,https://www.frontiersin.org,Web,Proveri robots/ToS.
+Akademski,Časopisi/OA,BMC,https://www.biomedcentral.com,Web,OA segment Springer-a.
+Akademski,Časopisi/OA,MDPI,https://www.mdpi.com,Web,Mnogo OA; proveri ToS.
+Akademski,Časopisi/OA,PeerJ,https://peerj.com,Web/API,OA izdavač.
+Akademski,Časopisi/OA,SciELO,https://scielo.org,API,Regionalni OA.
+Akademski,Časopisi/OA,Semantic Scholar,https://www.semanticscholar.org,API,Meta‑indeks.
+Akademski,Časopisi/OA,OpenAlex,https://openalex.org,API,Otvoreni meta indeks.
+Akademski,Časopisi/OA,Crossref,https://www.crossref.org,API,DOI i reference.
+Akademski,Teze/Disertacije,OATD,https://oatd.org,Web,Agregator teza.
+Akademski,Teze/Disertacije,NDLTD,https://www.ndltd.org,Web,Mreža teza.
+Akademski,Teze/Disertacije,DART‑Europe,https://www.dart-europe.org,Web/OAI-PMH,EU teze.
+Akademski,Teze/Disertacije,EThOS (UK),https://ethos.bl.uk,Web,Britanska biblioteka.
+Akademski,Teze/Disertacije,Theses Canada,https://www.bac-lac.gc.ca/eng/services/theses,Web,Kanadske teze.
+Akademski,Teze/Disertacije,TEL/Theses.fr,https://theses.fr,API,Francuske teze.
+Akademski,Teze/Disertacije,Trove (AU),https://trove.nla.gov.au,API,Australija – NLA.
+Akademski,Konferencije,CEUR‑WS,https://ceur-ws.org,Web,Otvoreni zbornici.
+Akademski,Konferencije,ACL Anthology,https://aclanthology.org,API,NLP/CL radovi.
+Akademski,Konferencije,OpenReview,https://openreview.net,API,Radovi/recenzije.
+Akademski,Konferencije,USENIX,https://www.usenix.org/publications,Web,Mnogo OA radova.
+Akademski,Konferencije,NeurIPS Papers,https://papers.nips.cc,Web,Arhiva (OA).
+Akademski,Datasets,Zenodo,https://zenodo.org,API,OA repozitorijum dataset‑ova.
+Akademski,Datasets,Figshare,https://figshare.com,API,OA podaci.
+Akademski,Datasets,OSF,https://osf.io,API,Projekti/dataset‑ovi.
+Akademski,Datasets,Dataverse (Harvard),https://dataverse.org,API,Mreža repozitorijuma.
+Akademski,Datasets,Dryad,https://datadryad.org,API,Podaci za nauku/biomed.
+Akademski,Datasets,PANGAEA,https://www.pangaea.de,API,Geo/okruženje.
+Akademski,Datasets,ICPSR,https://www.icpsr.umich.edu,API,Društvene nauke (delimično ogr.).
+Akademski,Datasets,UCI ML Repository,https://archive.ics.uci.edu/ml/,Web,Bez API.
+Akademski,Datasets,OpenML,https://www.openml.org,API,ML dataset‑ovi.
+Akademski,Datasets,Kaggle,https://www.kaggle.com,API/CLI,Koristi zvaničnu CLI/API.
+Akademski,Datasets,Common Crawl,https://commoncrawl.org,S3/Index,Web korpusi.
+Akademski,Datasets,GDELT,https://www.gdeltproject.org,Bulk,Globalne vesti data.
+Akademski,Datasets,OpenStreetMap (OSM),https://www.openstreetmap.org,API/Overpass,Geo podaci.
+Akademski,Datasets,EU Open Data,https://data.europa.eu,API/CKAN,EU otvoreni podaci.
+Akademski,Datasets,US data.gov,https://data.gov,API/CKAN,US otvoreni podaci.
+Akademski,Datasets,UK data.gov.uk,https://data.gov.uk,API/CKAN,UK otvoreni podaci.
+Tehnički,Patenti,EPO Espacenet / OPS,https://www.epo.org/searching-for-patents/technical/espacenet.html,API,OPS API za meta i citate.
+Tehnički,Patenti,WIPO PATENTSCOPE,https://patentscope.wipo.int,API,PCT podaci.
+Tehnički,Patenti,USPTO Bulk & PatentsView,https://www.uspto.gov,Bulk/API,Bulk data + analitika.
+Tehnički,Patenti,J‑PlatPat (JP),https://www.j-platpat.inpit.go.jp,Web,Proveri ToS.
+Tehnički,Patenti,Lens.org,https://www.lens.org,API (ogr.),Scholar+patent; free nivo.
+Tehnički,Standardi,IETF RFC,https://www.rfc-editor.org,Index/API,RFC tekstovi.
+Tehnički,Standardi,W3C TR,https://www.w3.org/TR/,Sitemaps,Specifikacije.
+Tehnički,Standardi,WHATWG,https://spec.whatwg.org/,Web/Git,Živi standardi.
+Tehnički,Standardi,Unicode,https://unicode.org,Web/Downloads,"CLDR, UCD."
+Tehnički,Standardi,ECMA,https://ecma-international.org,Web,ECMAScript i dr.
+Tehnički,Standardi,OASIS,https://www.oasis-open.org,Web,Specifikacije.
+Tehnički,Standardi,3GPP,https://www.3gpp.org/specifications,Web,Specifikacije/PDF.
+Tehnički,Standardi,ETSI,https://www.etsi.org,Web,Javno dostupno.
+Tehnički,Standardi,OGC,https://www.ogc.org,Web,Geo standardi.
+Tehnički,Standardi,IANA Registries,https://www.iana.org/protocols,Web,Registri.
+Tehnički,Dokumentacija,MDN,https://developer.mozilla.org,Sitemaps,JS/CSS/HTML.
+Tehnički,Dokumentacija,Python,https://docs.python.org/3/,Sitemaps,Zvanično.
+Tehnički,Dokumentacija,Go,https://go.dev/doc/,Sitemaps,Zvanično.
+Tehnički,Dokumentacija,Rust,https://doc.rust-lang.org/,Sitemaps,Zvanično.
+Tehnički,Dokumentacija,Node.js,https://nodejs.org/en/docs,Sitemaps,Zvanično.
+Tehnički,Dokumentacija,React,https://react.dev/learn,Sitemaps,Zvanično.
+Tehnički,Dokumentacija,Kubernetes,https://kubernetes.io/docs/,Sitemaps,Zvanično.
+Tehnički,Dokumentacija,Docker,https://docs.docker.com,Sitemaps,Zvanično.
+Tehnički,Dokumentacija,PostgreSQL,https://www.postgresql.org/docs/,Sitemaps,Zvanično.
+Tehnički,Dokumentacija,MySQL,https://dev.mysql.com/doc/,Sitemaps,Zvanično.
+Tehnički,Dokumentacija,Nginx,https://nginx.org/en/docs/,Sitemaps,Zvanično.
+Tehnički,Dokumentacija,Apache HTTP Server,https://httpd.apache.org/docs/,Sitemaps,Zvanično.
+Tehnički,Dokumentacija,AWS,https://docs.aws.amazon.com,Sitemaps,Zvanično.
+Tehnički,Dokumentacija,Azure,https://learn.microsoft.com/azure,Sitemaps,Zvanično.
+Tehnički,Dokumentacija,Google Cloud,https://cloud.google.com/docs,Sitemaps,Zvanično.
+Tehnički,Whitepapers/Izveštaji,OECD,https://www.oecd.org/publications/,Feeds/API,Publikacije.
+Tehnički,Whitepapers/Izveštaji,World Bank OKR,https://openknowledge.worldbank.org,OAI-PMH/API,Publikacije.
+Tehnički,Whitepapers/Izveštaji,IMF eLibrary,https://www.elibrary.imf.org,Feeds/API,Publikacije.
+Tehnički,Whitepapers/Izveštaji,ITU,https://www.itu.int/pub,Web,Publikacije.
+Tehnički,Whitepapers/Izveštaji,UNDP,https://www.undp.org/publications,Web,Publikacije.
+Tehnički,Whitepapers/Izveštaji,UNEP,https://www.unep.org/resources,Web,Publikacije.
+Tehnički,Whitepapers/Izveštaji,WHO IRIS,https://iris.who.int,API,WHO OA repozitorij.
+Tehnički,Whitepapers/Izveštaji,ECDC,https://www.ecdc.europa.eu/en/publications,Web,Publikacije.
+Tehnički,Whitepapers/Izveštaji,Eurostat,https://ec.europa.eu/eurostat,API/Feeds,Publikacije.
+Tehnički,Whitepapers/Izveštaji,ECB,https://www.ecb.europa.eu,API/SDMX,Publikacije/serije.
+Tehnički,Whitepapers/Izveštaji,BIS,https://www.bis.org/publ/,Web,Publikacije.
+Javni/Državni,Zakoni/Propisi,EUR‑Lex,https://eur-lex.europa.eu,API (Cellar),EU pravo; SPARQL/Cellar.
+Javni/Državni,Zakoni/Propisi,EU Publications – CELLAR,https://op.europa.eu/en,API,EU dokumenti.
+Javni/Državni,Zakoni/Propisi,Serbia – otvoreni podaci,https://data.gov.rs,API/CKAN,RS portal otvorenih podataka.
+Javni/Državni,Zakoni/Propisi,Nacionalni službeni glasnici,—,Web,Zavisno od zemlje/ToS.
+Javni/Državni,Sudske odluke,ECHR HUDOC,https://hudoc.echr.coe.int,API/JSON,Evropski sud za ljudska prava.
+Javni/Državni,Sudske odluke,CJEU CURIA,https://curia.europa.eu,Web,Sud pravde EU.
+Javni/Državni,Sudske odluke,Nacionalni portali,—,Web,Zemlje regiona – proveri ToS.
+Javni/Državni,Javne nabavke,EU TED,https://ted.europa.eu,Open Data/API,EU tenderi.
+Javni/Državni,Javne nabavke,World Bank Procurement,https://projects.worldbank.org/en/projects-operations/procurement,Web,WB tenderi.
+Javni/Državni,Javne nabavke,Nacionalni portali (RS/HR/BA/MNE...),—,Web,Zemlje regiona – proveri ToS.
+Javni/Državni,Statistika/Finansije,RZS Srbija,https://www.stat.gov.rs,Web/Excel/API,Publikacije/tabele.
+Javni/Državni,Statistika/Finansije,NBS Srbija,https://nbs.rs,Web/CSV,"Kursne liste, statistike."
+Javni/Državni,Statistika/Finansije,Eurostat,https://ec.europa.eu/eurostat/api/,API/SDMX,EU statistike.
+Javni/Državni,Statistika/Finansije,World Bank Data,https://data.worldbank.org,API,Indikatori.
+Javni/Državni,Statistika/Finansije,IMF Data,https://www.imf.org/en/Data,API/SDMX,Finansije.
+Javni/Državni,Statistika/Finansije,OECD Data,https://stats.oecd.org,API,Statistike.
+Javni/Državni,Statistika/Finansije,UN Data,https://data.un.org,Web/API,UN indikatori.
+Javni/Državni,Statistika/Finansije,FAOSTAT,https://www.fao.org/faostat/,API,Poljoprivreda.
+Dodatno,Udžbenici/OER,OpenStax,https://openstax.org/,Web/Downloads,OA udžbenici (PDF).
+Dodatno,Udžbenici/OER,Saylor Academy,https://www.saylor.org/books/,Web,OER udžbenici.
+Dodatno,Udžbenici/OER,LibreTexts,https://libretexts.org,Web,Veliki OER.
+Dodatno,Udžbenici/OER,OER Commons,https://www.oercommons.org,Web/API,Agregator OER.
+Dodatno,Udžbenici/OER,MIT OpenCourseWare,https://ocw.mit.edu,Web,Materijali kurseva.
+Dodatno,Udžbenici/OER,Wikibooks,https://www.wikibooks.org,API,CC licence.
+Dodatno,Udžbenici/OER,Project Gutenberg,https://www.gutenberg.org,Feeds,Public domain knjige.
+Dodatno,Udžbenici/OER,Open Library,https://openlibrary.org,API,Katalozi/metadata.
+Dodatno,Prezentacije,CEUR‑WS Attachments,https://ceur-ws.org,Web,Često PDF slajdovi.
+Dodatno,Prezentacije,Zenodo Communities,https://zenodo.org/communities/,API,Slajdovi/posteri.
+Dodatno,Dev ekosistem,GitHub Releases,https://docs.github.com/en/rest/releases,API,REST API za release‑ove.
+Dodatno,Dev ekosistem,GitLab Releases,https://docs.gitlab.com/ee/api/releases/,API,Release API.
+Dodatno,Dev ekosistem,PyPI,https://pypi.org,API,JSON API za pakete.
+Dodatno,Dev ekosistem,npm Registry,https://registry.npmjs.org,API,JSON registri.
+Dodatno,Dev ekosistem,crates.io,https://crates.io,API,Rust paketi.

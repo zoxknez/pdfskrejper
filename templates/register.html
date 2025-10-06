@@ -1,0 +1,116 @@
+{% extends "base.html" %}
+
+{% block title %}Registracija - PDF Scraper{% endblock %}
+
+{% block content %}
+<div class="container py-5">
+    <div class="row justify-content-center fade-in-up">
+        <div class="col-md-7 col-lg-6">
+            <div class="card shadow-glow">
+                <div class="card-body p-5">
+                    <!-- Logo & Title -->
+                    <div class="text-center mb-5">
+                        <div class="mb-4" style="animation: float 3s ease-in-out infinite;">
+                            <i class="bi bi-person-plus-fill" style="font-size: 4rem; background: var(--success-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent;"></i>
+                        </div>
+                        <h2 class="text-gradient-success mb-2">Kreirajte Nalog</h2>
+                        <p class="text-visible">Pridružite se PDF Scraper platformi</p>
+                    </div>
+
+                    <!-- Register Form -->
+                    <form method="POST" action="">
+                        {{ form.hidden_tag() }}
+                        
+                        <!-- Username -->
+                        <div class="mb-4">
+                            <label for="username" class="form-label">
+                                <i class="bi bi-person-fill me-2"></i>Korisničko Ime
+                            </label>
+                            {{ form.username(class="form-control form-control-lg", placeholder="johndoe") }}
+                            {% if form.username.errors %}
+                                <div class="invalid-feedback d-block">
+                                    {% for error in form.username.errors %}
+                                        <i class="bi bi-exclamation-circle me-1"></i>{{ error }}
+                                    {% endfor %}
+                                </div>
+                            {% endif %}
+                        </div>
+                        
+                        <!-- Email -->
+                        <div class="mb-4">
+                            <label for="email" class="form-label">
+                                <i class="bi bi-envelope-fill me-2"></i>Email Adresa
+                            </label>
+                            {{ form.email(class="form-control form-control-lg", placeholder="vas@email.com") }}
+                            {% if form.email.errors %}
+                                <div class="invalid-feedback d-block">
+                                    {% for error in form.email.errors %}
+                                        <i class="bi bi-exclamation-circle me-1"></i>{{ error }}
+                                    {% endfor %}
+                                </div>
+                            {% endif %}
+                        </div>
+                        
+                        <!-- Password -->
+                        <div class="mb-4">
+                            <label for="password" class="form-label">
+                                <i class="bi bi-lock-fill me-2"></i>Lozinka
+                            </label>
+                            {{ form.password(class="form-control form-control-lg", placeholder="••••••••") }}
+                            {% if form.password.errors %}
+                                <div class="invalid-feedback d-block">
+                                    {% for error in form.password.errors %}
+                                        <i class="bi bi-exclamation-circle me-1"></i>{{ error }}
+                                    {% endfor %}
+                                </div>
+                            {% endif %}
+                            <small class="text-visible">
+                                <i class="bi bi-info-circle me-1"></i>
+                                Minimalno 6 karaktera
+                            </small>
+                        </div>
+                        
+                        <!-- Confirm Password -->
+                        <div class="mb-4">
+                            <label for="confirm" class="form-label">
+                                <i class="bi bi-lock-fill me-2"></i>Potvrdite Lozinku
+                            </label>
+                            {{ form.confirm(class="form-control form-control-lg", placeholder="••••••••") }}
+                            {% if form.confirm.errors %}
+                                <div class="invalid-feedback d-block">
+                                    {% for error in form.confirm.errors %}
+                                        <i class="bi bi-exclamation-circle me-1"></i>{{ error }}
+                                    {% endfor %}
+                                </div>
+                            {% endif %}
+                        </div>
+                        
+                        <!-- Submit Button -->
+                        <div class="d-grid mb-4">
+                            {{ form.submit(class="btn btn-success btn-lg") }}
+                        </div>
+                        
+                        <!-- Divider -->
+                        <div class="text-center">
+                            <p class="text-muted mb-0">
+                                Već imate nalog? 
+                                <a href="{{ url_for('login') }}" class="text-gradient fw-bold">
+                                    Prijavite se
+                                </a>
+                            </p>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            
+            <!-- Additional Info -->
+            <div class="text-center mt-4">
+                <p class="text-muted small">
+                    <i class="bi bi-shield-check me-1"></i>
+                    Registracijom prihvatate naše uslove korišćenja
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

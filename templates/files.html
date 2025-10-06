@@ -1,0 +1,122 @@
+{% extends "base.html" %}
+
+{% block title %}Moji Fajlovi - PDF Scraper{% endblock %}
+
+{% block content %}
+<div class="row mb-4">
+    <div class="col">
+        <h1 class="display-5">
+            <i class="bi bi-files"></i> Moji Fajlovi
+        </h1>
+        <p class="lead">Svi preuzeti PDF dokumenti</p>
+    </div>
+</div>
+
+<!-- Filters -->
+<div class="card shadow mb-4">
+    <div class="card-body">
+        <form method="GET" action="">
+            <div class="row g-3">
+                <div class="col-md-4">
+                    <label class="form-label">Kategorija</label>
+                    <select class="form-select" name="category">
+                        <option value="">Sve kategorije</option>
+                        <option value="books" {% if request.args.get('category') == 'books' %}selected{% endif %}>Knjige</option>
+                        <option value="research" {% if request.args.get('category') == 'research' %}selected{% endif %}>Naučni Radovi</option>
+                        <option value="magazines" {% if request.args.get('category') == 'magazines' %}selected{% endif %}>Časopisi</option>
+                        <option value="documents" {% if request.args.get('category') == 'documents' %}selected{% endif %}>Dokumenti</option>
+                    </select>
+                </div>
+                <div class="col-md-5">
+                    <label class="form-label">Pretraga</label>
+                    <input type="text" class="form-control" name="search" 
+                           value="{{ request.args.get('search', '') }}"
+                           placeholder="Naziv fajla...">
+                </div>
+                <div class="col-md-3">
+                    <label class="form-label">&nbsp;</label>
+                    <div class="d-grid">
+                        <button type="submit" class="btn btn-primary">
+                            <i class="bi bi-search"></i> Filtriraj
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+<!-- Files List -->
+<div class="card shadow">
+    <div class="card-header">
+        <div class="d-flex justify-content-between align-items-center">
+            <h5 class="mb-0 text-white">
+                <i class="bi bi-file-earmark-pdf-fill"></i> 
+                Ukupno: <span class="text-gradient">{{ files|length }}</span> fajlova
+            </h5>
+        </div>
+    </div>
+    <div class="card-body p-0">
+        {% if files %}
+        <div class="table-responsive">
+            <table class="table table-hover mb-0">
+                <thead class="table-light">
+                    <tr>
+                        <th>Fajl</th>
+                        <th>Kategorija</th>
+                        <th>Veličina</th>
+                        <th>Preuzeto</th>
+                        <th class="text-end">Akcije</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for file in files %}
+                    <tr>
+                        <td>
+                            <i class="bi bi-file-pdf text-danger"></i>
+                            <strong>{{ file.filename }}</strong>
+                        </td>
+                        <td>
+                            <span class="badge bg-secondary">{{ file.category }}</span>
+                        </td>
+                        <td>{{ file.file_size_mb }} MB</td>
+                        <td>
+                            <small class="text-muted">
+                                {{ file.created_at.strftime('%d.%m.%Y %H:%M') }}
+                            </small>
+                        </td>
+                        <td class="text-end">
+                            <div class="btn-group btn-group-sm">
+                                <a href="{{ file.filepath }}" 
+                                   class="btn btn-outline-primary"
+                                   download
+                                   title="Preuzmi">
+                                    <i class="bi bi-download"></i>
+                                </a>
+                                <button class="btn btn-outline-info"
+                                        onclick="copyToClipboard('{{ file.filepath }}')"
+                                        title="Kopiraj putanju">
+                                    <i class="bi bi-clipboard"></i>
+                                </button>
+                            </div>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        {% else %}
+        <div class="text-center py-5">
+            <div class="mb-4" style="animation: float 3s ease-in-out infinite;">
+                <i class="bi bi-inbox" style="font-size: 5rem; opacity: 0.3; color: var(--text-secondary);"></i>
+            </div>
+            <h5 class="empty-state-title mb-3">Nema preuzetih fajlova</h5>
+            <p class="empty-state-text mb-4">Pokrenite scraping job da biste preuzeli PDF dokumente!</p>
+            <a href="{{ url_for('scrape') }}" class="btn btn-primary btn-lg mt-2">
+                <i class="bi bi-play-circle-fill me-2"></i> Pokreni Scraping
+            </a>
+        </div>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}

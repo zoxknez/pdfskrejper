@@ -1,0 +1,155 @@
+{
+  "nav": {
+    "brand": "PDF Skrejper",
+    "dashboard": "Kontrolna tabla",
+    "scrape": "Skrejpovanje",
+    "files": "Fajlovi",
+    "profile": "Profil",
+    "logout": "Odjava"
+  },
+  "auth": {
+    "login": {
+      "title": "Dobrodošli Nazad",
+      "subtitle": "Prijavite se na vaš nalog",
+      "username": "Korisničko ime",
+      "password": "Lozinka",
+      "remember": "Zapamti me",
+      "submit": "Prijavi se",
+      "noAccount": "Nemate nalog?",
+      "register": "Registrujte se"
+    },
+    "register": {
+      "title": "Kreiraj Nalog",
+      "subtitle": "Započnite vaše putovanje skrejpovanja",
+      "username": "Korisničko ime",
+      "email": "Email adresa",
+      "password": "Lozinka",
+      "confirmPassword": "Potvrdite lozinku",
+      "submit": "Registruj se",
+      "haveAccount": "Već imate nalog?",
+      "login": "Prijavite se"
+    }
+  },
+  "dashboard": {
+    "title": "Kontrolna Tabla",
+    "subtitle": "Pregled vaših aktivnosti",
+    "stats": {
+      "totalJobs": "Ukupno Poslova",
+      "completed": "Završeno",
+      "totalFiles": "Ukupno Fajlova"
+    },
+    "quickActions": {
+      "title": "Brze Akcije",
+      "newScrape": "Novo Skrejpovanje",
+      "viewFiles": "Pregled Fajlova"
+    },
+    "recentJobs": {
+      "title": "Poslednji Poslovi",
+      "category": "Kategorija",
+      "source": "Izvor",
+      "status": "Status",
+      "progress": "Progres",
+      "actions": "Akcije",
+      "view": "Pogledaj",
+      "empty": "Još uvek nemate poslove skrejpovanja",
+      "startFirst": "Počnite prvo skrejpovanje"
+    }
+  },
+  "scrape": {
+    "title": "Novo Skrejpovanje",
+    "subtitle": "Podesite i pokrenite posao skrejpovanja",
+    "step1": {
+      "title": "1. Izaberite Kategoriju",
+      "books": "Knjige",
+      "research": "Naučni Radovi",
+      "magazines": "Časopisi",
+      "documents": "Dokumenti"
+    },
+    "step2": {
+      "title": "2. Izaberite Izvor"
+    },
+    "step3": {
+      "title": "3. Kriterijum Pretrage (opciono)",
+      "placeholder": "npr. machine learning, python..."
+    },
+    "step4": {
+      "title": "4. Broj Rezultata"
+    },
+    "submit": "Pokreni Skrejpovanje",
+    "help": {
+      "title": "Pomoć",
+      "howItWorks": "Kako radi scraping?",
+      "steps": {
+        "1": "Izaberite kategoriju dokumenata",
+        "2": "Odaberite izvor podataka",
+        "3": "Opcionalno unesite pretragu",
+        "4": "Postavite broj rezultata",
+        "5": "Pokrenite scraping"
+      },
+      "sources": {
+        "title": "Dostupni izvori:",
+        "arxiv": "arXiv - Naučni radovi",
+        "pubmed": "PubMed - Medicinski članci",
+        "gutenberg": "Gutenberg - Besplatne knjige",
+        "archive": "Archive.org - Časopisi"
+      }
+    }
+  },
+  "files": {
+    "title": "Moji Fajlovi",
+    "subtitle": "Svi vaši preuzeti PDF-ovi",
+    "filter": {
+      "category": "Kategorija",
+      "allCategories": "Sve kategorije",
+      "search": "Pretraži fajlove...",
+      "submit": "Filtriraj"
+    },
+    "total": "Ukupno",
+    "filesCount": "fajlova",
+    "table": {
+      "filename": "Naziv fajla",
+      "category": "Kategorija",
+      "size": "Veličina",
+      "date": "Datum",
+      "actions": "Akcije",
+      "download": "Preuzmi"
+    },
+    "empty": {
+      "title": "Još uvek nemate fajlove",
+      "subtitle": "Započnite skrejpovanje da biste preuzeli PDF fajlove",
+      "button": "Počni Skrejpovanje"
+    }
+  },
+  "profile": {
+    "title": "Profil",
+    "subtitle": "Vaši podaci i statistika",
+    "info": {
+      "title": "Informacije o Nalogu",
+      "username": "Korisničko ime",
+      "email": "Email",
+      "joined": "Pridruženo",
+      "lastLogin": "Poslednja prijava"
+    },
+    "stats": {
+      "title": "Statistika Aktivnosti"
+    }
+  },
+  "common": {
+    "loading": "Učitavanje...",
+    "error": "Greška",
+    "success": "Uspeh",
+    "cancel": "Otkaži",
+    "save": "Sačuvaj",
+    "delete": "Obriši",
+    "edit": "Izmeni",
+    "back": "Nazad",
+    "next": "Dalje",
+    "previous": "Prethodno",
+    "search": "Pretraži",
+    "filter": "Filtriraj",
+    "clear": "Očisti"
+  },
+  "footer": {
+    "copyright": "© 2025 PDF Skrejper. Sva prava zadržana."
+  }
+}

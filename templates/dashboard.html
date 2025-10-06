@@ -1,0 +1,321 @@
+{% extends "base.html" %}
+
+{% block title %}Dashboard - PDF Scraper{% endblock %}
+
+{% block content %}
+<div class="row mb-5 fade-in-down">
+    <div class="col">
+        <h1 class="display-4">
+            <i class="bi bi-speedometer2"></i> Dashboard
+        </h1>
+        <p class="lead">Dobrodošli nazad, <strong>{{ current_user.username }}</strong>! 👋</p>
+    </div>
+</div>
+
+<!-- Statistics Cards -->
+<div class="row g-4 mb-5">
+    <div class="col-md-4 fade-in-up">
+        <div class="stat-card hover-lift">
+            <div class="stat-icon" style="background: var(--primary-gradient);">
+                <i class="bi bi-briefcase-fill"></i>
+            </div>
+            <div class="stat-value">{{ total_jobs }}</div>
+            <div class="stat-label" data-i18n="dashboard.stats.totalJobs">Ukupno Poslova</div>
+        </div>
+    </div>
+    
+    <div class="col-md-4 fade-in-up" style="animation-delay: 0.1s;">
+        <div class="stat-card hover-lift">
+            <div class="stat-icon" style="background: var(--success-gradient);">
+                <i class="bi bi-check-circle-fill"></i>
+            </div>
+            <div class="stat-value">{{ completed_jobs }}</div>
+            <div class="stat-label" data-i18n="dashboard.stats.completed">Završeno</div>
+        </div>
+    </div>
+    
+    <div class="col-md-4 fade-in-up" style="animation-delay: 0.2s;">
+        <div class="stat-card hover-lift">
+            <div class="stat-icon" style="background: var(--info-gradient);">
+                <i class="bi bi-file-earmark-pdf-fill"></i>
+            </div>
+            <div class="stat-value">{{ total_files }}</div>
+            <div class="stat-label" data-i18n="dashboard.stats.totalFiles">Ukupno Fajlova</div>
+        </div>
+    </div>
+</div>
+
+<!-- Quick Actions -->
+<div class="row mb-5 fade-in-left">
+    <div class="col">
+        <div class="card shadow-lg hover-lift">
+            <div class="card-header">
+                <h5 class="mb-0">
+                    <i class="bi bi-lightning-charge-fill"></i> Brze Akcije
+                </h5>
+            </div>
+            <div class="card-body p-4">
+                <div class="row g-4">
+                    <div class="col-md-6">
+                        <a href="{{ url_for('scrape') }}" class="btn btn-primary w-100 btn-lg">
+                            <i class="bi bi-play-circle-fill me-2"></i> 
+                            Pokreni Novi Scraping
+                        </a>
+                    </div>
+                    <div class="col-md-6">
+                        <a href="{{ url_for('files') }}" class="btn btn-outline-primary w-100 btn-lg">
+                            <i class="bi bi-folder2-open me-2"></i> 
+                            Pregledaj Fajlove
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Recent Jobs Table -->
+<div class="row fade-in-up" style="animation-delay: 0.3s;">
+    <div class="col">
+        <div class="card shadow-lg">
+            <div class="card-header">
+                <div class="d-flex justify-content-between align-items-center">
+                    <h5 class="mb-0">
+                        <i class="bi bi-clock-history"></i> Nedavni Job-ovi
+                    </h5>
+                    {% if recent_jobs %}
+                    <span class="badge bg-primary">{{ recent_jobs|length }}</span>
+                    {% endif %}
+                </div>
+            </div>
+            <div class="card-body p-0">
+                {% if recent_jobs %}
+                <div class="table-responsive">
+                    <table class="table table-hover mb-0">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Kategorija</th>
+                                <th>Izvor</th>
+                                <th>Status</th>
+                                <th>Datum</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for job in recent_jobs %}
+                            <tr>
+                                <td>
+                                    <strong class="text-gradient">#{{ job.id }}</strong>
+                                </td>
+                                <td>
+                                    <span class="badge bg-secondary">
+                                        <i class="bi bi-tag-fill me-1"></i>
+                                        {{ job.category }}
+                                    </span>
+                                </td>
+                                <td>
+                                    <i class="bi bi-globe2 me-1"></i>
+                                    {{ job.source_name }}
+                                </td>
+                                <td>
+                                    <span class="badge {{ 'bg-success' if job.status == 'completed' else 'bg-primary' if job.status == 'running' else 'bg-danger' if job.status == 'failed' else 'bg-secondary' }}">
+                                        {% if job.status == 'completed' %}
+                                            <i class="bi bi-check-circle-fill"></i> Završeno
+                                        {% elif job.status == 'running' %}
+                                            <i class="bi bi-arrow-clockwise spinner-grow spinner-grow-sm"></i> U toku
+                                        {% elif job.status == 'failed' %}
+                                            <i class="bi bi-x-circle-fill"></i> Neuspešno
+                                        {% else %}
+                                            <i class="bi bi-clock-fill"></i> Na čekanju
+                                        {% endif %}
+                                    </span>
+                                </td>
+                                <td>
+                                    <small class="text-muted">
+                                        <i class="bi bi-calendar3 me-1"></i>
+                                        {{ job.created_at.strftime('%d.%m.%Y %H:%M') }}
+                                    </small>
+                                </td>
+                                <td class="text-end">
+                                    <a href="{{ url_for('job_status', job_id=job.id) }}" 
+                                       class="btn btn-sm btn-outline-primary hover-lift">
+                                        <i class="bi bi-eye-fill"></i> Detalji
+                                    </a>
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+                {% else %}
+                <div class="text-center py-5">
+                    <div class="mb-4" style="animation: float 3s ease-in-out infinite;">
+                        <i class="bi bi-inbox" style="font-size: 5rem; opacity: 0.3; color: var(--text-secondary);"></i>
+                    </div>
+                    <h5 class="empty-state-title mb-3">Još uvek nemate job-ove</h5>
+                    <p class="empty-state-text mb-4">Pokrenite prvi scraping i počnite sa preuzimanjem PDF dokumenata!</p>
+                    <a href="{{ url_for('scrape') }}" class="btn btn-primary btn-lg">
+                        <i class="bi bi-play-circle-fill me-2"></i> Pokrenite Prvi Scraping
+                    </a>
+                </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Hidden old content below... -->
+<div style="display: none;">
+<div class="row g-4 mb-4">
+    <div class="col-md-4">
+        <div class="card bg-primary text-white">
+            <div class="card-body">
+                <div class="d-flex justify-content-between align-items-center">
+                    <div>
+                        <h6 class="card-subtitle mb-2 text-white-50">Ukupno Poslova</h6>
+                        <h2 class="card-title mb-0">{{ total_jobs }}</h2>
+                    </div>
+                    <i class="bi bi-gear-fill" style="font-size: 3rem; opacity: 0.5;"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="col-md-4">
+        <div class="card bg-success text-white">
+            <div class="card-body">
+                <div class="d-flex justify-content-between align-items-center">
+                    <div>
+                        <h6 class="card-subtitle mb-2 text-white-50">Završenih Poslova</h6>
+                        <h2 class="card-title mb-0">{{ completed_jobs }}</h2>
+                    </div>
+                    <i class="bi bi-check-circle-fill" style="font-size: 3rem; opacity: 0.5;"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="col-md-4">
+        <div class="card bg-info text-white">
+            <div class="card-body">
+                <div class="d-flex justify-content-between align-items-center">
+                    <div>
+                        <h6 class="card-subtitle mb-2 text-white-50">Preuzeto Fajlova</h6>
+                        <h2 class="card-title mb-0">{{ total_files }}</h2>
+                    </div>
+                    <i class="bi bi-file-earmark-pdf-fill" style="font-size: 3rem; opacity: 0.5;"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Quick Actions -->
+<div class="row mb-4">
+    <div class="col">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">
+                    <i class="bi bi-lightning-fill"></i> Brze Akcije
+                </h5>
+                <div class="d-grid gap-2 d-md-flex">
+                    <a href="{{ url_for('scrape') }}" class="btn btn-primary">
+                        <i class="bi bi-play-circle"></i> Novi Scraping
+                    </a>
+                    <a href="{{ url_for('files') }}" class="btn btn-outline-primary">
+                        <i class="bi bi-folder"></i> Pregledaj Fajlove
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Nedavni Poslovi -->
+<div class="row">
+    <div class="col">
+        <div class="card">
+            <div class="card-header bg-white">
+                <h5 class="mb-0">
+                    <i class="bi bi-clock-history"></i> Nedavni Poslovi
+                </h5>
+            </div>
+            <div class="card-body p-0">
+                {% if recent_jobs %}
+                <div class="table-responsive">
+                    <table class="table table-hover mb-0">
+                        <thead class="table-light">
+                            <tr>
+                                <th>ID</th>
+                                <th>Kategorija</th>
+                                <th>Izvor</th>
+                                <th>Status</th>
+                                <th>Rezultati</th>
+                                <th>Vreme</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for job in recent_jobs %}
+                            <tr>
+                                <td><strong>#{{ job.id }}</strong></td>
+                                <td>
+                                    <span class="badge bg-secondary">{{ job.category }}</span>
+                                </td>
+                                <td>{{ job.source_name }}</td>
+                                <td>
+                                    {% if job.status == 'completed' %}
+                                        <span class="badge bg-success">
+                                            <i class="bi bi-check-circle"></i> Završeno
+                                        </span>
+                                    {% elif job.status == 'running' %}
+                                        <span class="badge bg-primary">
+                                            <i class="bi bi-arrow-clockwise"></i> U toku
+                                        </span>
+                                    {% elif job.status == 'failed' %}
+                                        <span class="badge bg-danger">
+                                            <i class="bi bi-x-circle"></i> Neuspešno
+                                        </span>
+                                    {% else %}
+                                        <span class="badge bg-secondary">
+                                            <i class="bi bi-clock"></i> Na čekanju
+                                        </span>
+                                    {% endif %}
+                                </td>
+                                <td>
+                                    <small>
+                                        <i class="bi bi-download text-success"></i> {{ job.total_downloaded }}
+                                        <i class="bi bi-x-circle text-danger ms-2"></i> {{ job.total_failed }}
+                                    </small>
+                                </td>
+                                <td>
+                                    <small class="text-muted">
+                                        {{ job.created_at.strftime('%d.%m.%Y %H:%M') }}
+                                    </small>
+                                </td>
+                                <td class="text-end">
+                                    <a href="{{ url_for('job_status', job_id=job.id) }}" 
+                                       class="btn btn-sm btn-outline-primary">
+                                        <i class="bi bi-eye"></i>
+                                    </a>
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+                {% else %}
+                <div class="text-center py-5">
+                    <i class="bi bi-inbox" style="font-size: 3rem; opacity: 0.3;"></i>
+                    <p class="text-muted mt-3">Još uvek nemate scraping poslova.</p>
+                    <a href="{{ url_for('scrape') }}" class="btn btn-primary">
+                        Započnite Prvi Scraping
+                    </a>
+                </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,58 @@
+Country/Region,Category,Subcategory,Source,Start_URL,Protocol (API/RSS/OAI/HTML),Notes
+REGION (Balkan),Meta-katalozi,Biblioteke,COBISS mreža (SI/RS/HR/BA/ME/MK/AL/XK),https://www.cobiss.net/,HTML / Z39.50 (biblioteke),Ulaz u nacionalne COBISS instance i kataloge. Koristi se za bibliografske zapise.
+REGION (Balkan),Naučni meta-indeksi,OA/indeksi,OpenAIRE Research Graph,https://explore.openaire.eu/,API,EU agregator OA radova i repozitorija (mnogi balkanski repoi prisutni).
+REGION (Balkan),Naučni meta-indeksi,OA/indeksi,"OpenAlex (globalno, pokriva i Balkan)",https://openalex.org/,API,Otvoreni meta-index radova/časopisa/institucija; dobar za normalizaciju.
+Serbia,Knjige/Digitalne zbirke,Digitalne kolekcije,Narodna biblioteka Srbije – Digitalna,https://digitalna.nb.rs/,HTML/IIIF,"Digitalne kolekcije NBS (knjige, novine, karte...)."
+Serbia,Naučni radovi,Disertacije,NaRDuS (doktorati),https://nardus.mpn.gov.rs/,OAI-PMH/HTML,Nacionalni repozitorij disertacija; tipični OAI endpoint: /oai/request.
+Serbia,Naučni radovi,Časopisi,doiSerbia (OA časopisi),https://doiserbia.nb.rs/,HTML/DOI,Krovni portal srpskih OA časopisa.
+Serbia,Naučni radovi,Časopisi/indeksi,SCIndeks (Srpski citatni indeks),https://scindeks.org/,HTML/RSS,Indeks domaćih časopisa; proveriti uslove za harvesting.
+Serbia,Otvoreni podaci,Portal,Portal otvorenih podataka – data.gov.rs,https://data.gov.rs/,CKAN API,Katalog datasetova; većina ima JSON/CSV preuzimanje.
+Serbia,Statistika,Nacionalna statistika,RZS – Republički zavod za statistiku,https://www.stat.gov.rs/,HTML/Excel/CSV,Publikacije i tabele (često Excel/CSV).
+Serbia,Finansije,Centralna banka,NBS – Narodna banka Srbije,https://nbs.rs/,HTML/CSV,"Kursne liste, statistike; CSV tabele."
+Serbia,Javne nabavke,Portal,Portal javnih nabavki (UJN),https://jnportal.ujn.gov.rs/,HTML/RSS,Pretraga i oglasi; throttling i cookie politika.
+Serbia,Propisi,Pravni informac. sistem,PIS RS / Službeni glasnik,https://www.pravno-informacioni-sistem.rs/,HTML,Pretraga propisa; proveri ToS.
+Croatia,Knjige/Digitalne zbirke,Digitalne kolekcije,NSK – Digitalne zbirke,https://digitalna.nsk.hr/,HTML/IIIF,Digitalne kolekcije Nacionalne i sveučilišne knjižnice.
+Croatia,Naučni radovi,Nacionalna mreža repozitorija,DABAR (SRCE) – mreža repozitorija,https://dabar.srce.hr/,OAI-PMH/HTML,Mnogi institucionalni DSpace repoi; OAI bazni URL obično /oai.
+Croatia,Naučni radovi,Bibliografija,CROSBI – Hrvatska znanstvena bibliografija,https://www.bib.irb.hr/,HTML/RSS,Zapisi o radovima i projektima (IRB).
+Croatia,Naučni radovi,Repozitorij,FULIR (IRB),https://fulir.irb.hr/,OAI-PMH/HTML,Institucionalni repozitorij IRB (ima i FULIR Data).
+Croatia,Časopisi,OA časopisi,Hrčak – Portal znanstvenih časopisa RH,https://hrcak.srce.hr/,HTML/RSS,Mnogi OA časopisi sa RSS-om po časopisu.
+Croatia,Otvoreni podaci,Portal,data.gov.hr – otvoreni podaci RH,https://data.gov.hr/,CKAN API,Katalog datasetova (CKAN).
+Croatia,Statistika,Nacionalna statistika,DZS – Državni zavod za statistiku,https://dzs.gov.hr/,HTML/Excel,Publikacije i baze (često Excel).
+Croatia,Javne nabavke,Portal,EOJN – Elektroničke javne nabave,https://eojn.hr/,HTML,Središnji portal za javne nabave (prijave/objave).
+Croatia,Propisi,Službeni list,Narodne novine,https://narodne-novine.nn.hr/,HTML/RSS,Službeni list RH (provjeri ToS).
+Slovenia,Knjige/Digitalne zbirke,Digitalne kolekcije,dLib.si – Digitalna knjižnica Slovenije,https://www.dlib.si/,HTML/IIIF,"Knjige, novine, periodika, slike."
+Slovenia,Naučni radovi,Repozitorij,RUL – Repozitorij UL,https://repozitorij.uni-lj.si/,OAI-PMH/HTML,DSpace; OAI na /oai.
+Slovenia,Naučni radovi,Repozitorij,DKUM – Digitalna knjižnica UM,https://dk.um.si/,OAI-PMH/HTML,DSpace-CRIS; OAI na /oai.
+Slovenia,Naučni meta,CRIS,SICRIS – nacionalni CRIS,https://www.sicris.si/,HTML,"Istraživači, projekti, institucije."
+Slovenia,Otvoreni podaci,Portal,OPSI – Odprti podatki Slovenije,https://podatki.gov.si/,CKAN API,Nacionalni open data portal.
+Slovenia,Javne nabavke,Portal,eNaročanje / Portal javnih naročil,https://ejn.gov.si/,HTML,Objave i dokumentacija javnih naročil.
+Slovenia,Propisi,Službeni list,Uradni list RS,https://www.uradni-list.si/,HTML,Službeni list Slovenije.
+Bosnia and Herzegovina,Knjige/Digitalne zbirke,Digitalne kolekcije,NUB BiH – digitalne kolekcije,https://www.nub.ba/,HTML,Nacionalna i univerzitetska biblioteka BiH (linkovi ka digitalnim zbirkama).
+Bosnia and Herzegovina,Naučni radovi,Repozitoriji (primeri),UIS – Univerzitet u Istočnom Sarajevu (doktorati),https://www.ues.rs.ba/ (doktorati/rep.),HTML/OAI (varira),Institucionalni repozitoriji variraju; često DSpace sa /oai.
+Bosnia and Herzegovina,Otvoreni podaci,Portal,podaci.gov.ba – državni otvoreni podaci,https://podaci.gov.ba/,CKAN API,Katalog datasetova BiH.
+Bosnia and Herzegovina,Statistika,Nacionalna statistika,Agencija za statistiku BiH (BHAS),https://bhas.gov.ba/,HTML/Excel,Publikacije i statističke baze.
+Bosnia and Herzegovina,Javne nabavke,Portal,Portal javnih nabavki BiH,https://www.ejn.gov.ba/,HTML,Službeni portal za nabavke (provjeri uslove).
+Bosnia and Herzegovina,Propisi,Službeni listovi,Službeni glasnik BiH (i entitetski listovi),https://sluzbenilist.ba/ (razne instance),HTML,Razdvojeno po državnom/entitetskom nivou.
+Montenegro,Knjige/Digitalne zbirke,Digitalne kolekcije,Digitalna biblioteka Crne Gore (Nacionalna biblioteka),https://www.nb-cg.me/ (digital),HTML,Digitalne zbirke NB Crne Gore (različiti podportali).
+Montenegro,Naučni radovi,Repozitorij,UCG – PHAIDRA/DSpace (institucionalno),https://www.ucg.ac.me/ (repozitorij linkovi),OAI-PMH/HTML,Često PHAIDRA/DSpace – proveriti /oai.
+Montenegro,Otvoreni podaci,Portal,data.gov.me – otvoreni podaci,https://data.gov.me/,CKAN API,Nacionalni open data portal.
+Montenegro,Statistika,Nacionalna statistika,MONSTAT,https://www.monstat.org/,HTML/Excel,Publikacije i baze podataka.
+Montenegro,Propisi,Službeni list,Službeni list CG,https://www.sluzbenilist.me/,HTML,Službeni list Crne Gore.
+Montenegro,Javne nabavke,Portal,Portal javnih nabavki CG,https://cejn.gov.me/ (ili nadležni portal),HTML,Proveriti aktuelni zvanični portal.
+North Macedonia,Knjige/Digitalne zbirke,Digitalne kolekcije,NUL „Sv. Kliment Ohridski“ – digitalne,https://www.nuk.mk/ (digital),HTML,Nacionalna biblioteka; digitalne zbirke/linkovi.
+North Macedonia,Naučni radovi,Repozitorij,UKIM – institucionalni repozitorij (DSpace),https://www.ukim.edu.mk/ (repozitorij),OAI-PMH/HTML,DSpace; probaj /oai.
+North Macedonia,Otvoreni podaci,Portal,data.gov.mk – otvoreni podaci,https://data.gov.mk/,CKAN API,Open data portal.
+North Macedonia,Statistika,Nacionalna statistika,Državni zavod za statistiku (DZS),https://www.stat.gov.mk/,HTML/Excel,Baze i publikacije.
+North Macedonia,Propisi,Službeni list,Služben vesnik RSM,https://www.slvesnik.com.mk/,HTML,Službeni list RSM.
+North Macedonia,Javne nabavke,Portal,e-Nabavki,https://e-nabavki.gov.mk/,HTML,Elektronske javne nabavke.
+Albania,Otvoreni podaci,Portal,data.gov.al – otvoreni podaci Albanije,https://data.gov.al/,CKAN API,Nacionalni open data portal.
+Albania,Statistika,Nacionalna statistika,INSTAT,https://www.instat.gov.al/,HTML/Excel,Statistički podaci.
+Albania,Propisi,Službeni list,Fletorja Zyrtare (Official Gazette),https://qbz.gov.al/ (ili zvanični portal),HTML,Službeni list (verifikovati domenu).
+Albania,Javne nabavke,Portal,Appal/Procurement portal,https://www.app.gov.al/ (ili nadležni portal),HTML,Elektronske nabavke (potvrditi aktuelni URL).
+Kosovo*,Otvoreni podaci,Portal,Open Data Kosovo (NGO projekti),https://opendatakosovo.org/,HTML/API (varira),Skupovi i projekti otvorenih podataka.
+Kosovo*,Statistika,Nacionalna statistika,ASK – Agjencia e Statistikave të Kosovës,https://ask.rks-gov.net/,HTML/Excel,Zvanične statistike.
+Kosovo*,Otvoreni podaci,Vlada – open data,opendata.rks-gov.net (državni portal),https://opendata.rks-gov.net/ (ako je aktivan),CKAN API,Status portala varira; proveriti dostupnost.
+Kosovo*,Propisi,Službeni list,Official Gazette of Kosovo,https://gzk.rks-gov.net/,HTML,Službeni list (verifikovati).
+Kosovo*,Javne nabavke,Portal,e-Procurement Kosovo,https://e-prokurimi.rks-gov.net/ (ili e-procurement),HTML,Elektronske javne nabavke.
+REGION (Balkan),Časopisi (regionalni portali),OA časopisi,Balkan OA via DOAJ (filter by country),https://doaj.org/,API,Možeš filtrirati zemlju izdavača i izvući sve OA naslove iz regiona.
+REGION (Balkan),Disertacije (agregacija),Institutional DSpace,DSpace inst. u regionu,(varira) — tipičan OAI: https://<host>/oai,OAI-PMH,Mnogi univerzitetski repozitoriji koriste DSpace; otkrij /oai ili /oai/request na domenu repozitorija.

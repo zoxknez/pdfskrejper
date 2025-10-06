@@ -1,0 +1,115 @@
+{% extends "base.html" %}
+
+{% block title %}Profil - PDF Scraper{% endblock %}
+
+{% block content %}
+<div class="row mb-4">
+    <div class="col">
+        <h1 class="display-5">
+            <i class="bi bi-person-circle"></i> Moj Profil
+        </h1>
+    </div>
+</div>
+
+<div class="row g-4">
+    <!-- User Info -->
+    <div class="col-lg-4">
+        <div class="card shadow">
+            <div class="card-body text-center">
+                <div class="mb-3">
+                    <i class="bi bi-person-circle" style="font-size: 5rem; color: #0d6efd;"></i>
+                </div>
+                <h4 class="card-title">{{ current_user.username }}</h4>
+                <p class="text-muted mb-0">{{ current_user.email }}</p>
+                <hr>
+                <p class="small text-muted mb-0">
+                    <i class="bi bi-calendar"></i>
+                    Član od: {{ current_user.created_at.strftime('%d.%m.%Y') }}
+                </p>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Statistics -->
+    <div class="col-lg-8">
+        <div class="card shadow mb-4">
+            <div class="card-header bg-white">
+                <h5 class="mb-0">
+                    <i class="bi bi-graph-up"></i> Statistika
+                </h5>
+            </div>
+            <div class="card-body">
+                <div class="row text-center">
+                    <div class="col-md-4 mb-3">
+                        <div class="p-3 bg-primary bg-opacity-10 rounded">
+                            <h2 class="text-primary mb-0">{{ stats.total_jobs }}</h2>
+                            <p class="small text-muted mb-0">Ukupno Job-ova</p>
+                        </div>
+                    </div>
+                    <div class="col-md-4 mb-3">
+                        <div class="p-3 bg-success bg-opacity-10 rounded">
+                            <h2 class="text-success mb-0">{{ stats.completed_jobs }}</h2>
+                            <p class="small text-muted mb-0">Završeno</p>
+                        </div>
+                    </div>
+                    <div class="col-md-4 mb-3">
+                        <div class="p-3 bg-info bg-opacity-10 rounded">
+                            <h2 class="text-info mb-0">{{ stats.total_files }}</h2>
+                            <p class="small text-muted mb-0">Preuzeto Fajlova</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <hr>
+                
+                <div class="row">
+                    <div class="col-md-6">
+                        <h6 class="text-muted">Omiljene Kategorije</h6>
+                        <ul class="list-unstyled">
+                            {% for cat in category_stats %}
+                            <li class="mb-2">
+                                <span class="badge bg-secondary">{{ cat.category }}</span>
+                                {{ cat.count }} job-ova
+                            </li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                    <div class="col-md-6">
+                        <h6 class="text-muted">Ukupna Veličina</h6>
+                        <p class="h4">{{ total_size }} MB</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Recent Activity -->
+        <div class="card shadow">
+            <div class="card-header bg-white">
+                <h5 class="mb-0">
+                    <i class="bi bi-clock-history"></i> Nedavna Aktivnost
+                </h5>
+            </div>
+            <div class="card-body p-0">
+                <div class="list-group list-group-flush">
+                    {% for job in recent_jobs %}
+                    <div class="list-group-item">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div>
+                                <strong>{{ job.source_name }}</strong> - {{ job.category }}
+                                <br>
+                                <small class="text-muted">
+                                    {{ job.created_at.strftime('%d.%m.%Y %H:%M') }}
+                                </small>
+                            </div>
+                            <span class="badge {{ 'bg-success' if job.status == 'completed' else 'bg-primary' if job.status == 'running' else 'bg-danger' }}">
+                                {{ job.status }}
+                            </span>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
