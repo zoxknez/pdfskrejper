@@ -96,8 +96,7 @@ body {
 
 main {
     flex: 1;
-    padding: 0;
-    margin-top: 0;
+    padding: 2rem 0;
 }
 
 .container {
@@ -356,55 +355,6 @@ main {
     border-radius: var(--border-radius-lg);
 }
 
-/* Gradient Buttons */
-.btn-gradient-primary {
-    background: var(--primary-gradient) !important;
-    color: white !important;
-    font-weight: 700;
-    box-shadow: 0 6px 20px rgba(102, 126, 234, 0.5);
-    border: none;
-    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-}
-
-.btn-gradient-primary:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 10px 30px rgba(102, 126, 234, 0.7);
-    filter: brightness(1.15);
-    color: white !important;
-}
-
-.btn-gradient-success {
-    background: var(--success-gradient) !important;
-    color: white !important;
-    font-weight: 700;
-    box-shadow: 0 6px 20px rgba(0, 242, 254, 0.5);
-    border: none;
-    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-}
-
-.btn-gradient-success:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 10px 30px rgba(0, 242, 254, 0.7);
-    filter: brightness(1.15);
-    color: white !important;
-}
-
-.btn-gradient-info {
-    background: var(--info-gradient) !important;
-    color: white !important;
-    font-weight: 700;
-    box-shadow: 0 6px 20px rgba(67, 233, 123, 0.5);
-    border: none;
-    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-}
-
-.btn-gradient-info:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 10px 30px rgba(67, 233, 123, 0.7);
-    filter: brightness(1.15);
-    color: white !important;
-}
-
 /* ============================================
    FORMS - Modern Input Design
    ============================================ */
@@ -506,31 +456,6 @@ main {
 @keyframes pulse-badge {
     0%, 100% { opacity: 1; }
     50% { opacity: 0.8; }
-}
-
-/* Tech Badges - About Page */
-.tech-badge {
-    background: rgba(102, 126, 234, 0.1);
-    border: 2px solid rgba(102, 126, 234, 0.3);
-    border-radius: var(--border-radius-md);
-    padding: 0.75rem 1rem;
-    color: var(--text-primary);
-    font-weight: 600;
-    text-align: center;
-    transition: all var(--transition-fast);
-}
-
-.tech-badge:hover {
-    background: rgba(102, 126, 234, 0.2);
-    border-color: var(--primary-color);
-    transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
-}
-
-.tech-badge i {
-    margin-right: 0.5rem;
-    font-size: 1.25rem;
-    color: var(--primary-color);
 }
 
 /* ============================================
@@ -972,45 +897,6 @@ h1, h2, h3, h4, h5, h6 {
     color: var(--text-secondary) !important;
 }
 
-/* Footer Social Links */
-.footer-social-link {
-    color: rgba(255, 255, 255, 0.85);
-    font-size: 2rem;
-    transition: all var(--transition-fast);
-    text-decoration: none;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.footer-social-link:hover {
-    color: var(--primary-color);
-    transform: translateY(-4px) scale(1.15);
-    filter: drop-shadow(0 4px 8px rgba(102, 126, 234, 0.4));
-}
-
-.footer-social-link i {
-    transition: all var(--transition-fast);
-}
-
-.footer-paypal:hover {
-    color: #00457C;
-    filter: drop-shadow(0 4px 8px rgba(0, 69, 124, 0.4));
-}
-
-/* Footer Icon Links */
-.footer-icon-link {
-    color: rgba(255, 255, 255, 0.9);
-    font-size: 1.25rem;
-    text-decoration: none;
-    transition: all var(--transition-fast);
-}
-
-.footer-icon-link:hover {
-    color: white;
-    transform: scale(1.15);
-}
-
 /* ============================================
    UTILITY CLASSES
    ============================================ */
@@ -1261,46 +1147,19 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 /* Light Mode Buttons */
-[data-theme="light"] .btn-gradient-primary {
-    background: var(--primary-gradient) !important;
-    color: #ffffff !important;
-    font-weight: 700;
-    box-shadow: 0 6px 20px rgba(102, 126, 234, 0.5);
-    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-}
-
-[data-theme="light"] .btn-gradient-primary:hover {
-    box-shadow: 0 10px 30px rgba(102, 126, 234, 0.7);
-    transform: translateY(-3px);
-    filter: brightness(1.15);
-}
-
-[data-theme="light"] .btn-gradient-success {
-    background: var(--success-gradient) !important;
-    color: #ffffff !important;
-    font-weight: 700;
-    box-shadow: 0 6px 20px rgba(0, 242, 254, 0.5);
-    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-}
-
-[data-theme="light"] .btn-gradient-success:hover {
-    box-shadow: 0 10px 30px rgba(0, 242, 254, 0.7);
-    transform: translateY(-3px);
-    filter: brightness(1.15);
-}
-
+[data-theme="light"] .btn-gradient-primary,
+[data-theme="light"] .btn-gradient-success,
 [data-theme="light"] .btn-gradient-info {
-    background: var(--info-gradient) !important;
     color: #ffffff !important;
-    font-weight: 700;
-    box-shadow: 0 6px 20px rgba(67, 233, 123, 0.5);
-    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    font-weight: 600;
+    box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
 }
 
+[data-theme="light"] .btn-gradient-primary:hover,
+[data-theme="light"] .btn-gradient-success:hover,
 [data-theme="light"] .btn-gradient-info:hover {
-    box-shadow: 0 10px 30px rgba(67, 233, 123, 0.7);
-    transform: translateY(-3px);
-    filter: brightness(1.15);
+    box-shadow: 0 6px 20px rgba(102, 126, 234, 0.5);
+    transform: translateY(-2px);
 }
 
 /* Light Mode Empty States */
@@ -1339,18 +1198,4 @@ h1, h2, h3, h4, h5, h6 {
 
 .footer .text-danger {
     color: #ff6b9d !important;
-}
-
-/* Footer Social Links - Always visible in dark/light */
-[data-theme="light"] .footer-social-link,
-[data-theme="light"] .footer-icon-link {
-    color: rgba(255, 255, 255, 0.9);
-}
-
-[data-theme="light"] .footer-social-link:hover {
-    color: var(--primary-color);
-}
-
-[data-theme="light"] .footer-icon-link:hover {
-    color: white;
 }

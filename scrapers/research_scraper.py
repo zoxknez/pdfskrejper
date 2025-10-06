@@ -3,10 +3,8 @@ Scraper za naučne radove.
 """
 
 from crawlee.crawlers import PlaywrightCrawlingContext
-
 from utils.logger import get_logger
 from utils.validators import is_pdf_url
-
 from .base_scraper import BaseScraper
 
 logger = get_logger(__name__)
@@ -61,7 +59,9 @@ class ResearchScraper(BaseScraper):
                             'el => el.closest("li").querySelector(".title")'
                         )
                         title = (
-                            await title_elem.inner_text() if title_elem else "Unknown"
+                            await title_elem.inner_text()
+                            if title_elem
+                            else "Unknown"
                         )
                     except Exception as e:
                         logger.debug(f"Error extracting title: {e}")
@@ -69,7 +69,11 @@ class ResearchScraper(BaseScraper):
 
                     self.pdf_urls.append(href)
                     self.metadata.append(
-                        {"url": href, "title": title.strip(), "source": "arXiv"}
+                        {
+                            "url": href,
+                            "title": title.strip(),
+                            "source": "arXiv",
+                        }
                     )
                     logger.debug(f"Pronađen PDF: {title[:50]}...")
 
@@ -85,11 +89,18 @@ class ResearchScraper(BaseScraper):
                 document.querySelectorAll('a').forEach(link => {
                     const href = link.href;
                     const text = link.textContent.toLowerCase();
-                    
-                    if (href && (text.includes('pdf') || href.includes('.pdf'))) {
+
+                    if (href && (
+                        text.includes('pdf') ||
+                        href.includes('.pdf')
+                    )) {
+                        const titleElem = link.closest('.rprt')
+                            ?.querySelector('.title');
+                        const title = titleElem?.textContent ||
+                                     'Unknown';
                         results.push({
                             url: href,
-                            title: link.closest('.rprt')?.querySelector('.title')?.textContent || 'Unknown'
+                            title: title
                         });
                     }
                 });
@@ -103,7 +114,11 @@ class ResearchScraper(BaseScraper):
             if url not in self.pdf_urls:
                 self.pdf_urls.append(url)
                 self.metadata.append(
-                    {"url": url, "title": link["title"].strip(), "source": "PubMed"}
+                    {
+                        "url": url,
+                        "title": link["title"].strip(),
+                        "source": "PubMed",
+                    }
                 )
                 logger.debug(f"Pronađen PDF: {link['title'][:50]}...")
 
@@ -138,6 +153,10 @@ class ResearchScraper(BaseScraper):
             if is_pdf_url(url) and url not in self.pdf_urls:
                 self.pdf_urls.append(url)
                 self.metadata.append(
-                    {"url": url, "title": link["title"], "source": self.source.name}
+                    {
+                        "url": url,
+                        "title": link["title"],
+                        "source": self.source.name,
+                    }
                 )
                 logger.debug(f"Pronađen PDF: {link['title'][:50]}...")

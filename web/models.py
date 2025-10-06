@@ -3,9 +3,7 @@ Database modeli za web aplikaciju.
 """
 
 from datetime import datetime
-
 from flask_login import UserMixin
-
 from .database import db
 
 
@@ -24,7 +22,9 @@ class User(UserMixin, db.Model):
 
     # Relationships
     scraping_jobs = db.relationship("ScrapingJob", backref="user", lazy=True)
-    downloaded_files = db.relationship("DownloadedFile", backref="user", lazy=True)
+    downloaded_files = db.relationship(
+        "DownloadedFile", backref="user", lazy=True
+    )
 
     def __repr__(self):
         return f"<User {self.username}>"
@@ -49,7 +49,6 @@ class ScrapingJob(db.Model):
         db.String(20), default="pending"
     )  # pending, running, completed, failed
     progress = db.Column(db.Integer, default=0)
-    celery_task_id = db.Column(db.String(100))  # Celery task ID
 
     # Results
     total_found = db.Column(db.Integer, default=0)
@@ -63,7 +62,9 @@ class ScrapingJob(db.Model):
     completed_at = db.Column(db.DateTime)
 
     # Relationships
-    downloaded_files = db.relationship("DownloadedFile", backref="job", lazy=True)
+    downloaded_files = db.relationship(
+        "DownloadedFile", backref="job", lazy=True
+    )
 
     def __repr__(self):
         return f"<ScrapingJob {self.id} - {self.status}>"

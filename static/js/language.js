@@ -53,7 +53,7 @@ class LanguageManager {
         // Update language flag icon
         const langFlag = document.getElementById('langFlag');
         if (langFlag) {
-            langFlag.textContent = this.currentLang === 'sr' ? 'SRB' : 'ENG';
+            langFlag.textContent = this.currentLang === 'sr' ? '🇷🇸' : '🇬🇧';
         }
         
         console.log(`🌍 Applied ${translatedCount} translations`);

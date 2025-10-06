@@ -13,8 +13,8 @@
                         <div class="mb-4" style="animation: float 3s ease-in-out infinite;">
                             <i class="bi bi-person-plus-fill" style="font-size: 4rem; background: var(--success-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent;"></i>
                         </div>
-                        <h2 class="text-gradient-success mb-2" data-i18n="auth.register.title">Kreirajte Nalog</h2>
-                        <p class="text-visible" data-i18n="auth.register.subtitle">Pridružite se PDF Scraper platformi</p>
+                        <h2 class="text-gradient-success mb-2">Kreirajte Nalog</h2>
+                        <p class="text-visible">Pridružite se PDF Scraper platformi</p>
                     </div>
 
                     <!-- Register Form -->
@@ -23,10 +23,10 @@
                         
                         <!-- Username -->
                         <div class="mb-4">
-                            <label for="username" class="form-label text-white">
-                                <i class="bi bi-person-fill me-2"></i><span data-i18n="auth.register.username">Korisničko Ime</span>
+                            <label for="username" class="form-label">
+                                <i class="bi bi-person-fill me-2"></i>Korisničko Ime
                             </label>
-                            {{ form.username(class="form-control form-control-lg") }}
+                            {{ form.username(class="form-control form-control-lg", placeholder="johndoe") }}
                             {% if form.username.errors %}
                                 <div class="invalid-feedback d-block">
                                     {% for error in form.username.errors %}
@@ -38,10 +38,10 @@
                         
                         <!-- Email -->
                         <div class="mb-4">
-                            <label for="email" class="form-label text-white">
-                                <i class="bi bi-envelope-fill me-2"></i><span data-i18n="auth.register.email">Email Adresa</span>
+                            <label for="email" class="form-label">
+                                <i class="bi bi-envelope-fill me-2"></i>Email Adresa
                             </label>
-                            {{ form.email(class="form-control form-control-lg") }}
+                            {{ form.email(class="form-control form-control-lg", placeholder="vas@email.com") }}
                             {% if form.email.errors %}
                                 <div class="invalid-feedback d-block">
                                     {% for error in form.email.errors %}
@@ -53,10 +53,10 @@
                         
                         <!-- Password -->
                         <div class="mb-4">
-                            <label for="password" class="form-label text-white">
-                                <i class="bi bi-lock-fill me-2"></i><span data-i18n="auth.register.password">Lozinka</span>
+                            <label for="password" class="form-label">
+                                <i class="bi bi-lock-fill me-2"></i>Lozinka
                             </label>
-                            {{ form.password(class="form-control form-control-lg") }}
+                            {{ form.password(class="form-control form-control-lg", placeholder="••••••••") }}
                             {% if form.password.errors %}
                                 <div class="invalid-feedback d-block">
                                     {% for error in form.password.errors %}
@@ -66,19 +66,19 @@
                             {% endif %}
                             <small class="text-visible">
                                 <i class="bi bi-info-circle me-1"></i>
-                                <span data-i18n="auth.register.passwordHint">Minimalno 6 karaktera</span>
+                                Minimalno 6 karaktera
                             </small>
                         </div>
                         
                         <!-- Confirm Password -->
                         <div class="mb-4">
-                            <label for="confirm_password" class="form-label text-white">
-                                <i class="bi bi-lock-fill me-2"></i><span data-i18n="auth.register.confirm">Potvrdite Lozinku</span>
+                            <label for="confirm" class="form-label">
+                                <i class="bi bi-lock-fill me-2"></i>Potvrdite Lozinku
                             </label>
-                            {{ form.confirm_password(class="form-control form-control-lg") }}
-                            {% if form.confirm_password.errors %}
+                            {{ form.confirm(class="form-control form-control-lg", placeholder="••••••••") }}
+                            {% if form.confirm.errors %}
                                 <div class="invalid-feedback d-block">
-                                    {% for error in form.confirm_password.errors %}
+                                    {% for error in form.confirm.errors %}
                                         <i class="bi bi-exclamation-circle me-1"></i>{{ error }}
                                     {% endfor %}
                                 </div>
@@ -87,14 +87,16 @@
                         
                         <!-- Submit Button -->
                         <div class="d-grid mb-4">
-                            <button type="submit" class="btn btn-gradient-success btn-lg" data-i18n="auth.register.submit">Registruj se</button>
+                            {{ form.submit(class="btn btn-success btn-lg") }}
                         </div>
                         
                         <!-- Divider -->
                         <div class="text-center">
-                            <p class="text-white mb-0">
-                                <span data-i18n="auth.register.hasAccount">Već imate nalog?</span> 
-                                <a href="{{ url_for('login') }}" class="text-gradient fw-bold" data-i18n="auth.register.login">Prijavite se</a>
+                            <p class="text-muted mb-0">
+                                Već imate nalog? 
+                                <a href="{{ url_for('login') }}" class="text-gradient fw-bold">
+                                    Prijavite se
+                                </a>
                             </p>
                         </div>
                     </form>

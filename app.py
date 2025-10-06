@@ -5,43 +5,39 @@ Profesionalna web aplikacija sa login/register sistemom
 
 import os
 import webbrowser
-from datetime import datetime
 from threading import Timer
-
-from flask import Flask, flash, jsonify, redirect, render_template, request, url_for
+from flask import (
+    Flask,
+    render_template,
+    redirect,
+    url_for,
+    flash,
+    request,
+    jsonify,
+)
 from flask_login import (
     LoginManager,
-    current_user,
-    login_required,
     login_user,
     logout_user,
+    login_required,
+    current_user,
 )
-from werkzeug.security import check_password_hash, generate_password_hash
+from werkzeug.security import generate_password_hash, check_password_hash
+from datetime import datetime
+import asyncio
 
+from web.database import db, init_db
+from web.models import User, ScrapingJob, DownloadedFile
+from web.forms import LoginForm, RegisterForm, ScrapingForm
+from web.tasks import run_scraping_task
 from config.settings import Settings
 from config.sources import SourceType, get_sources_by_type
-from utils.logger import get_logger
-from web.database import db, init_db
-from web.forms import LoginForm, RegisterForm, ScrapingForm
-from web.models import DownloadedFile, ScrapingJob, User
-
-logger = get_logger(__name__)
 
 # Kreiraj Flask app
 app = Flask(__name__)
-
-# SECRET_KEY configuration - fail fast if not set in production
-SECRET_KEY = os.getenv("SECRET_KEY")
-if not SECRET_KEY:
-    if os.getenv("FLASK_ENV") == "production":
-        raise ValueError(
-            "SECRET_KEY must be set in production environment! "
-            "Set it in .env file or environment variables."
-        )
-    logger.warning("Using development SECRET_KEY - NOT FOR PRODUCTION!")
-    SECRET_KEY = "dev-secret-key-only-for-development"
-
-app.config["SECRET_KEY"] = SECRET_KEY
+app.config["SECRET_KEY"] = os.getenv(
+    "SECRET_KEY", "dev-secret-key-change-in-production"
+)
 app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///pdf_scraper.db"
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 
@@ -50,7 +46,9 @@ db.init_app(app)
 login_manager = LoginManager()
 login_manager.init_app(app)
 login_manager.login_view = "login"
-login_manager.login_message = "Molimo prijavite se da biste pristupili ovoj stranici."
+login_manager.login_message = (
+    "Molimo prijavite se da biste pristupili ovoj stranici."
+)
 
 # Kreiraj direktorijume
 Settings.create_directories()
@@ -59,7 +57,7 @@ Settings.create_directories()
 @login_manager.user_loader
 def load_user(user_id):
     """Load user by ID."""
-    return db.session.get(User, int(user_id))
+    return User.query.get(int(user_id))
 
 
 # ==================== AUTHENTICATION ROUTES ====================
@@ -83,7 +81,9 @@ def login():
     if form.validate_on_submit():
         user = User.query.filter_by(email=form.email.data).first()
 
-        if user and check_password_hash(user.password_hash, form.password.data):
+        if user and check_password_hash(
+            user.password_hash, form.password.data
+        ):
             login_user(user, remember=form.remember.data)
 
             # Update last login
@@ -92,7 +92,11 @@ def login():
 
             flash("Uspešno ste se prijavili!", "success")
             next_page = request.args.get("next")
-            return redirect(next_page) if next_page else redirect(url_for("dashboard"))
+            return (
+                redirect(next_page)
+                if next_page
+                else redirect(url_for("dashboard"))
+            )
         else:
             flash("Neispravna email adresa ili lozinka.", "danger")
 
@@ -114,24 +118,18 @@ def register():
             return redirect(url_for("register"))
 
         # Kreiraj novog korisnika
-        try:
-            hashed_password = generate_password_hash(form.password.data)
-            new_user = User(
-                username=form.username.data,
-                email=form.email.data,
-                password_hash=hashed_password,
-            )
+        hashed_password = generate_password_hash(form.password.data)
+        new_user = User(
+            username=form.username.data,
+            email=form.email.data,
+            password_hash=hashed_password,
+        )
 
-            db.session.add(new_user)
-            db.session.commit()
+        db.session.add(new_user)
+        db.session.commit()
 
-            flash("Nalog je uspešno kreiran! Možete se prijaviti.", "success")
-            return redirect(url_for("login"))
-        except Exception as e:
-            db.session.rollback()
-            logger.error(f"Error creating user: {e}")
-            flash("Greška pri kreiranju naloga. Pokušajte ponovo.", "danger")
-            return redirect(url_for("register"))
+        flash("Nalog je uspešno kreiran! Možete se prijaviti.", "success")
+        return redirect(url_for("login"))
 
     return render_template("register.html", form=form)
 
@@ -157,7 +155,9 @@ def dashboard():
     completed_jobs = ScrapingJob.query.filter_by(
         user_id=current_user.id, status="completed"
     ).count()
-    total_files = DownloadedFile.query.filter_by(user_id=current_user.id).count()
+    total_files = DownloadedFile.query.filter_by(
+        user_id=current_user.id
+    ).count()
 
     # Nedavni poslovi
     recent_jobs = (
@@ -196,36 +196,17 @@ def scrape():
             status="pending",
         )
 
+        db.session.add(job)
+        db.session.commit()
+
+        # Pokreni scraping task u pozadini
         try:
-            db.session.add(job)
-            db.session.commit()
+            asyncio.run(run_scraping_task(job.id))
+            flash("Scraping je pokrenut! Možete pratiti napredak.", "success")
         except Exception as e:
-            db.session.rollback()
-            logger.error(f"Error creating job: {e}")
-            flash("Greška pri kreiranju job-a.", "danger")
-            return redirect(url_for("scrape"))
-
-        # Pokreni scraping task preko Celery-ja (non-blocking)
-        try:
-            from web.celery_tasks import scrape_task
-
-            task = scrape_task.delay(job.id)
-            job.celery_task_id = task.id
-            db.session.commit()
-
-            flash(
-                "Scraping je pokrenut u pozadini! Možete pratiti napredak.", "success"
-            )
-            logger.info(f"Scraping task started: job_id={job.id}, task_id={task.id}")
-        except Exception as e:
-            db.session.rollback()
             job.status = "failed"
-            job.error_message = f"Greška pri pokretanju task-a: {str(e)}"
-            try:
-                db.session.commit()
-            except Exception as commit_error:
-                db.session.rollback()
-                logger.error(f"Error committing failed status: {commit_error}")
+            job.error_message = str(e)
+            db.session.commit()
             flash(f"Greška pri pokretanju scraping-a: {e}", "danger")
 
         return redirect(url_for("job_status", job_id=job.id))
@@ -272,9 +253,9 @@ def files():
     if category:
         query = query.filter_by(category=category)
 
-    files_pagination = query.order_by(DownloadedFile.created_at.desc()).paginate(
-        page=page, per_page=20, error_out=False
-    )
+    files_pagination = query.order_by(
+        DownloadedFile.created_at.desc()
+    ).paginate(page=page, per_page=20, error_out=False)
 
     return render_template(
         "files.html",
@@ -293,7 +274,9 @@ def profile():
     completed_jobs = ScrapingJob.query.filter_by(
         user_id=current_user.id, status="completed"
     ).count()
-    total_files = DownloadedFile.query.filter_by(user_id=current_user.id).count()
+    total_files = DownloadedFile.query.filter_by(
+        user_id=current_user.id
+    ).count()
 
     # Kategorije
     category_stats = (
@@ -311,7 +294,9 @@ def profile():
         .filter_by(user_id=current_user.id)
         .scalar()
     )
-    total_size = round(total_size_result / (1024 * 1024), 2) if total_size_result else 0
+    total_size = (
+        round(total_size_result / (1024 * 1024), 2) if total_size_result else 0
+    )
 
     # Nedavni poslovi
     recent_jobs = (
@@ -335,12 +320,6 @@ def profile():
         total_size=total_size,
         recent_jobs=recent_jobs,
     )
-
-
-@app.route("/about")
-def about():
-    """O programu stranica."""
-    return render_template("about.html")
 
 
 # ==================== API ROUTES ====================
@@ -372,29 +351,17 @@ def api_job_status(job_id):
     if job.user_id != current_user.id:
         return jsonify({"error": "Unauthorized"}), 403
 
-    response = {
-        "id": job.id,
-        "status": job.status,
-        "progress": job.progress,
-        "total_found": job.total_found,
-        "total_downloaded": job.total_downloaded,
-        "total_failed": job.total_failed,
-        "error_message": job.error_message,
-    }
-
-    # Ako postoji Celery task ID, dodaj info o task-u
-    if job.celery_task_id:
-        try:
-            from celery.result import AsyncResult
-
-            task_result = AsyncResult(job.celery_task_id)
-            response["celery_status"] = task_result.status
-            response["celery_ready"] = task_result.ready()
-        except Exception as e:
-            logger.debug(f"Celery status unavailable for job {job_id}: {e}")
-            # Celery nije dostupan, ignoriši
-
-    return jsonify(response)
+    return jsonify(
+        {
+            "id": job.id,
+            "status": job.status,
+            "progress": job.progress,
+            "total_found": job.total_found,
+            "total_downloaded": job.total_downloaded,
+            "total_failed": job.total_failed,
+            "error_message": job.error_message,
+        }
+    )
 
 
 @app.route("/api/stats")
@@ -402,11 +369,15 @@ def api_job_status(job_id):
 def api_stats():
     """API endpoint za statistiku korisnika."""
     total_jobs = ScrapingJob.query.filter_by(user_id=current_user.id).count()
-    total_files = DownloadedFile.query.filter_by(user_id=current_user.id).count()
+    total_files = DownloadedFile.query.filter_by(
+        user_id=current_user.id
+    ).count()
 
     # Statistika po kategorijama
     categories_stats = (
-        db.session.query(DownloadedFile.category, db.func.count(DownloadedFile.id))
+        db.session.query(
+            DownloadedFile.category, db.func.count(DownloadedFile.id)
+        )
         .filter_by(user_id=current_user.id)
         .group_by(DownloadedFile.category)
         .all()
@@ -512,4 +483,4 @@ if __name__ == "__main__":
     print("⚠️  Za zaustavljanje: CTRL+C")
     print("=" * 60)
 
-    app.run(debug=True, use_reloader=True)
+    app.run(debug=True, use_reloader=False)

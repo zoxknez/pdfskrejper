@@ -3,10 +3,8 @@ Scraper za časopise i magazine.
 """
 
 from crawlee.crawlers import PlaywrightCrawlingContext
-
 from utils.logger import get_logger
 from utils.validators import is_pdf_url
-
 from .base_scraper import BaseScraper
 
 logger = get_logger(__name__)
@@ -61,10 +59,12 @@ class MagazineScraper(BaseScraper):
 
                 try:
                     await detail_page.goto(href, timeout=30000)
-                    await detail_page.wait_for_load_state("networkidle", timeout=30000)
+                    await detail_page.wait_for_load_state("networkidle")
 
                     # Pronađi PDF link
-                    pdf_link = await detail_page.query_selector('a[href$=".pdf"]')
+                    pdf_link = await detail_page.query_selector(
+                        'a[href$=".pdf"]'
+                    )
 
                     if pdf_link:
                         pdf_href = await pdf_link.get_attribute("href")
@@ -114,8 +114,8 @@ class MagazineScraper(BaseScraper):
                         href.toLowerCase().endsWith('.pdf') ||
                         link.textContent.toLowerCase().includes('pdf')
                     )) {
-                        const title = link.textContent.trim() || 
-                                     link.title || 
+                        const title = link.textContent.trim() ||
+                                     link.title ||
                                      'Unknown';
                         links.push({
                             url: href,
@@ -133,6 +133,10 @@ class MagazineScraper(BaseScraper):
             if is_pdf_url(url) and url not in self.pdf_urls:
                 self.pdf_urls.append(url)
                 self.metadata.append(
-                    {"url": url, "title": link["title"], "source": self.source.name}
+                    {
+                        "url": url,
+                        "title": link["title"],
+                        "source": self.source.name,
+                    }
                 )
                 logger.debug(f"Pronađen PDF: {link['title'][:50]}...")

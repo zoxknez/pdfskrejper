@@ -3,6 +3,6 @@ Web aplikacija moduli.
 """
 
 from .database import db
-from .models import DownloadedFile, ScrapingJob, User
+from .models import User, ScrapingJob, DownloadedFile
 
-__all__ = ["db", "User", "ScrapingJob", "DownloadedFile"]
+__all__ = ['db', 'User', 'ScrapingJob', 'DownloadedFile']
