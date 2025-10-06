@@ -75,7 +75,26 @@ python main.py --category research --limit 50
 python main.py --category books --output ./moje_knjige
 ```
 
-## 📁 Struktura projekta
+## 🎯 Verzije Projekta
+
+Projekat ima **2 načina rada**:
+
+### 1. 🌐 Web Aplikacija sa Celery (Preporučeno za produkciju)
+- Profesionalni background task processing
+- Non-blocking scraping operacije
+- Redis queue management
+- Real-time progress tracking
+- 📖 Setup: **[QUICKSTART_CELERY.md](QUICKSTART_CELERY.md)**
+
+### 2. 🖥️ CLI Verzija (Jednostavnija)
+- Direktno pokretanje iz terminala
+- Bez Redis/Celery zavisnosti
+- Odlično za testiranje
+- 📖 Setup: **[QUICKSTART.md](QUICKSTART.md)**
+
+---
+
+## � Struktura Projekta
 
 ```
 pdfskrajpovanje/

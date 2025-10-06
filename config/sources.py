@@ -8,6 +8,7 @@ from typing import Dict, List
 
 class SourceType(Enum):
     """Tipovi izvora dokumenata."""
+
     BOOKS = "books"
     RESEARCH = "research"
     MAGAZINES = "magazines"
@@ -17,21 +18,21 @@ class SourceType(Enum):
 
 class Source:
     """Predstavlja jedan izvor za scraping."""
-    
+
     def __init__(
         self,
         name: str,
         url: str,
         source_type: SourceType,
         description: str = "",
-        selectors: Dict[str, str] = None
+        selectors: Dict[str, str] = None,
     ):
         self.name = name
         self.url = url
         self.source_type = source_type
         self.description = description
         self.selectors = selectors or {}
-    
+
     def __repr__(self):
         return f"Source(name='{self.name}', type='{self.source_type.value}')"
 
@@ -49,7 +50,7 @@ SOURCES = {
                 "book_link": "a.link",
                 "pdf_link": "a[href$='.pdf']",
                 "title": "h1",
-            }
+            },
         ),
         Source(
             name="Open Library",
@@ -60,10 +61,9 @@ SOURCES = {
                 "search_url": "https://openlibrary.org/search?q={query}",
                 "book_link": "a.results",
                 "title": "h3.booktitle",
-            }
+            },
         ),
     ],
-    
     SourceType.RESEARCH: [
         Source(
             name="arXiv",
@@ -76,7 +76,7 @@ SOURCES = {
                 "pdf_link": "a[title='Download PDF']",
                 "title": "p.title",
                 "abstract": "span.abstract-full",
-            }
+            },
         ),
         Source(
             name="PubMed Central",
@@ -88,7 +88,7 @@ SOURCES = {
                 "paper_link": "div.rprt",
                 "pdf_link": "a.pdf",
                 "title": "a.title",
-            }
+            },
         ),
         Source(
             name="SSRN",
@@ -100,10 +100,9 @@ SOURCES = {
                 "paper_link": "div.paper-item",
                 "pdf_link": "a.download",
                 "title": "h3.title",
-            }
+            },
         ),
     ],
-    
     SourceType.MAGAZINES: [
         Source(
             name="Internet Archive",
@@ -115,17 +114,16 @@ SOURCES = {
                 "item_link": "div.item-ia",
                 "pdf_link": "a[href$='.pdf']",
                 "title": "div.item-ttl",
-            }
+            },
         ),
     ],
-    
     SourceType.DOCUMENTS: [
         Source(
             name="Custom Source",
             url="",
             source_type=SourceType.DOCUMENTS,
             description="Dodaj custom URL za scraping",
-            selectors={}
+            selectors={},
         ),
     ],
 }
