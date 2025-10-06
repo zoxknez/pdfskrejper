@@ -3,13 +3,11 @@
 {% block title %}Dashboard - PDF Scraper{% endblock %}
 
 {% block content %}
-<div class="row mb-5 fade-in-down">
-    <div class="col">
-        <h1 class="display-4">
-            <i class="bi bi-speedometer2"></i> Dashboard
-        </h1>
-        <p class="lead">Dobrodošli nazad, <strong>{{ current_user.username }}</strong>! 👋</p>
-    </div>
+<div class="mb-5 fade-in-down">
+    <h1 class="display-4">
+        <i class="bi bi-speedometer2"></i> <span data-i18n="dashboard.title">Kontrolna Tabla</span>
+    </h1>
+    <p class="lead text-visible">Dobrodošli nazad, <strong>{{ current_user.username }}</strong>! 👋</p>
 </div>
 
 <!-- Statistics Cards -->
@@ -46,28 +44,26 @@
 </div>
 
 <!-- Quick Actions -->
-<div class="row mb-5 fade-in-left">
-    <div class="col">
-        <div class="card shadow-lg hover-lift">
-            <div class="card-header">
-                <h5 class="mb-0">
-                    <i class="bi bi-lightning-charge-fill"></i> Brze Akcije
-                </h5>
-            </div>
-            <div class="card-body p-4">
-                <div class="row g-4">
-                    <div class="col-md-6">
-                        <a href="{{ url_for('scrape') }}" class="btn btn-primary w-100 btn-lg">
-                            <i class="bi bi-play-circle-fill me-2"></i> 
-                            Pokreni Novi Scraping
-                        </a>
-                    </div>
-                    <div class="col-md-6">
-                        <a href="{{ url_for('files') }}" class="btn btn-outline-primary w-100 btn-lg">
-                            <i class="bi bi-folder2-open me-2"></i> 
-                            Pregledaj Fajlove
-                        </a>
-                    </div>
+<div class="mb-5 fade-in-left">
+    <div class="card shadow-lg hover-lift">
+        <div class="card-header">
+            <h5 class="mb-0 text-white">
+                <i class="bi bi-lightning-charge-fill"></i> <span data-i18n="dashboard.quickActions.title">Brze Akcije</span>
+            </h5>
+        </div>
+        <div class="card-body p-4">
+            <div class="row g-4">
+                <div class="col-md-6">
+                    <a href="{{ url_for('scrape') }}" class="btn btn-gradient-primary w-100 btn-lg">
+                        <i class="bi bi-play-circle-fill me-2"></i> 
+                        <span data-i18n="dashboard.quickActions.newScrape">Pokreni Novi Scraping</span>
+                    </a>
+                </div>
+                <div class="col-md-6">
+                    <a href="{{ url_for('files') }}" class="btn btn-gradient-info w-100 btn-lg">
+                        <i class="bi bi-folder2-open me-2"></i> 
+                        <span data-i18n="dashboard.quickActions.viewFiles">Pregledaj Fajlove</span>
+                    </a>
                 </div>
             </div>
         </div>
@@ -75,11 +71,10 @@
 </div>
 
 <!-- Recent Jobs Table -->
-<div class="row fade-in-up" style="animation-delay: 0.3s;">
-    <div class="col">
-        <div class="card shadow-lg">
-            <div class="card-header">
-                <div class="d-flex justify-content-between align-items-center">
+<div class="fade-in-up" style="animation-delay: 0.3s;">
+    <div class="card shadow-lg">
+        <div class="card-header">
+            <div class="d-flex justify-content-between align-items-center">
                     <h5 class="mb-0">
                         <i class="bi bi-clock-history"></i> Nedavni Job-ovi
                     </h5>
@@ -316,6 +311,5 @@
                 {% endif %}
             </div>
         </div>
-    </div>
 </div>
 {% endblock %}
