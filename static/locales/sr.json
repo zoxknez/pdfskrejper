@@ -4,6 +4,7 @@
     "dashboard": "Kontrolna tabla",
     "scrape": "Skrejpovanje",
     "files": "Fajlovi",
+    "about": "O programu",
     "profile": "Profil",
     "logout": "Odjava"
   },
@@ -70,54 +71,58 @@
     },
     "step3": {
       "title": "3. Kriterijum Pretrage (opciono)",
-      "placeholder": "npr. machine learning, python..."
+      "placeholder": "npr. machine learning, python...",
+      "help": "Unesite ključne reči za pretragu (npr. \"machine learning\", \"python\")"
     },
     "step4": {
-      "title": "4. Broj Rezultata"
+      "title": "4. Broj Rezultata",
+      "help": "Maksimalan broj PDF fajlova za preuzimanje (1-500)"
     },
     "submit": "Pokreni Skrejpovanje",
     "help": {
       "title": "Pomoć",
       "howItWorks": "Kako radi scraping?",
       "steps": {
-        "1": "Izaberite kategoriju dokumenata",
-        "2": "Odaberite izvor podataka",
-        "3": "Opcionalno unesite pretragu",
-        "4": "Postavite broj rezultata",
-        "5": "Pokrenite scraping"
+        "step1": "Izaberite kategoriju dokumenata",
+        "step2": "Odaberite izvor podataka",
+        "step3": "Opcionalno unesite pretragu",
+        "step4": "Postavite broj rezultata",
+        "step5": "Pokrenite scraping"
       },
-      "sources": {
-        "title": "Dostupni izvori:",
-        "arxiv": "arXiv - Naučni radovi",
-        "pubmed": "PubMed - Medicinski članci",
-        "gutenberg": "Gutenberg - Besplatne knjige",
-        "archive": "Archive.org - Časopisi"
+      "sources": "Dostupni izvori:",
+      "sourceDesc": {
+        "arxiv": "Naučni radovi",
+        "pubmed": "Medicinski članci",
+        "gutenberg": "Besplatne knjige",
+        "archive": "Časopisi"
       }
     }
   },
   "files": {
     "title": "Moji Fajlovi",
-    "subtitle": "Svi vaši preuzeti PDF-ovi",
+    "subtitle": "Pregledaj i preuzmi PDF fajlove",
     "filter": {
       "category": "Kategorija",
-      "allCategories": "Sve kategorije",
-      "search": "Pretraži fajlove...",
-      "submit": "Filtriraj"
+      "all": "Sve kategorije",
+      "search": "Pretraga",
+      "searchPlaceholder": "Pretraži po imenu fajla..."
     },
-    "total": "Ukupno",
-    "filesCount": "fajlova",
     "table": {
-      "filename": "Naziv fajla",
+      "filename": "Ime fajla",
       "category": "Kategorija",
       "size": "Veličina",
       "date": "Datum",
-      "actions": "Akcije",
-      "download": "Preuzmi"
+      "actions": "Akcije"
+    },
+    "actions": {
+      "download": "Preuzmi",
+      "copy": "Kopiraj",
+      "delete": "Obriši"
     },
     "empty": {
-      "title": "Još uvek nemate fajlove",
-      "subtitle": "Započnite skrejpovanje da biste preuzeli PDF fajlove",
-      "button": "Počni Skrejpovanje"
+      "title": "Nema preuzetih fajlova",
+      "subtitle": "Započni preuzimanje PDF dokumenata",
+      "action": "Započni Pretragu"
     }
   },
   "profile": {
@@ -147,9 +152,55 @@
     "previous": "Prethodno",
     "search": "Pretraži",
     "filter": "Filtriraj",
-    "clear": "Očisti"
+    "clear": "Očisti",
+    "status": {
+      "completed": "Završeno",
+      "running": "U toku",
+      "failed": "Neuspešno",
+      "pending": "Na čekanju"
+    }
   },
   "footer": {
     "copyright": "© 2025 PDF Skrejper. Sva prava zadržana."
+  },
+  "about": {
+    "title": "O programu",
+    "subtitle": "Napredno skrejpovanje PDF fajlova sa elegantnim interfejsom",
+    "description": "PDF Skrejper je moderna web aplikacija dizajnirana da olakša preuzimanje i organizaciju PDF dokumenata iz raznih izvora na internetu. Sa intuitivnim interfejsom i moćnim mogućnostima skrejpovanja, možete lako da pronađete i preuzmete dokumente koja vam trebaju.",
+    "featuresTitle": "Karakteristike",
+    "features": {
+      "multiSource": "Podrška za više izvora",
+      "multiSourceDesc": "Skrejpujte sa različitih platforma (arXiv, PubMed, Gutenberg, Archive.org)",
+      "darkLight": "Dark/Light tema",
+      "darkLightDesc": "Prilagodite interfejs po svojoj želji",
+      "multilang": "Višejezičnost",
+      "multilangDesc": "Potpuna podrška za srpski i engleski jezik",
+      "userManagement": "Upravljanje korisnicima",
+      "userManagementDesc": "Sigurna autentifikacija sa flask-login",
+      "organized": "Organizacija fajlova",
+      "organizedDesc": "Automatsko organizovanje po kategorijama",
+      "responsive": "Responsive dizajn",
+      "responsiveDesc": "Savršeno radi na svim uređajima"
+    },
+    "techTitle": "Tehnologije",
+    "author": "Autor",
+    "developerCreator": "Developer & Creator",
+    "supportTitle": "Podrži projekat",
+    "supportDesc": "Ako ti se dopada ovaj projekat, možeš podržati razvoj.",
+    "donateBtn": "Doniraj via PayPal",
+    "donateThankYou": "Svaka donacija je dobrodošla! 💙",
+    "versionTitle": "Verzija",
+    "versionApp": "Aplikacija:",
+    "versionPython": "Python:",
+    "versionFlask": "Flask:",
+    "versionBootstrap": "Bootstrap:",
+    "versionCrawlee": "Crawlee:",
+    "versionStatus": "Status:",
+    "versionStatusActive": "Aktivan",
+    "versionLicense": "Licenca:",
+    "versionReleased": "Objavljen: Januar 2025",
+    "openSource": "Open Source",
+    "openSourceDesc": "Projekat je dostupan na GitHub-u kao open source. Slobodno pregledajte kod, prijavite bugove ili doprinsite razvoju!",
+    "viewOnGithub": "Pogledaj na GitHub-u"
   }
 }

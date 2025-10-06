@@ -48,6 +48,11 @@
                             <i class="bi bi-folder2-open"></i> <span data-i18n="nav.files">Moji Fajlovi</span>
                         </a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url_for('about') }}">
+                            <i class="bi bi-info-circle"></i> <span data-i18n="nav.about">O programu</span>
+                        </a>
+                    </li>
                 </ul>
                 <ul class="navbar-nav">
                     <!-- Theme Toggle -->
@@ -59,7 +64,7 @@
                     <!-- Language Toggle -->
                     <li class="nav-item">
                         <a class="nav-link" href="#" id="langToggle" title="Change language">
-                            <span id="langFlag">🇷🇸</span>
+                            <span id="langFlag">SRB</span>
                         </a>
                     </li>
                     <!-- User Dropdown -->
@@ -104,10 +109,51 @@
     
     <!-- Footer -->
     <footer class="footer mt-auto py-4">
-        <div class="container text-center">
-            <span class="text-white fw-semibold">
-                <span data-i18n="footer.copyright">© 2025 PDF Skrejper. Sva prava zadržana.</span> | Napravljeno sa <i class="bi bi-heart-fill text-danger"></i>
-            </span>
+        <div class="container">
+            <div class="d-flex justify-content-between align-items-center flex-wrap gap-3">
+                <!-- Copyright -->
+                <div class="text-white fw-semibold">
+                    <span data-i18n="footer.copyright">© 2025 PDF Skrejper. Sva prava zadržana.</span>
+                </div>
+                
+                <!-- Social Links -->
+                <div class="d-flex gap-4 align-items-center">
+                    <!-- GitHub -->
+                    <a href="https://github.com/zoxknez" target="_blank" class="footer-social-link" title="GitHub">
+                        <i class="bi bi-github"></i>
+                    </a>
+                    <!-- Email -->
+                    <a href="mailto:zoxknez@hotmail.com" class="footer-social-link" title="Email">
+                        <i class="bi bi-envelope-fill"></i>
+                    </a>
+                    <!-- PayPal Donation -->
+                    <a href="https://www.paypal.com/paypalme/o0o0o0o0o0o0o" target="_blank" class="footer-social-link footer-paypal" title="Doniraj">
+                        <i class="bi bi-paypal"></i>
+                    </a>
+                </div>
+                
+                <!-- Theme & Language Toggle -->
+                <div class="d-flex gap-3 align-items-center">
+                    <!-- Theme Toggle -->
+                    <a class="footer-icon-link" href="#" id="themeToggle" title="Toggle theme">
+                        <i class="bi bi-sun-fill" id="themeIcon"></i>
+                    </a>
+                    <!-- Language Toggle -->
+                    <a class="footer-icon-link" href="#" id="langToggle" title="Change language">
+                        <span id="langFlag">SRB</span>
+                    </a>
+                    {% if current_user.is_authenticated %}
+                    <!-- User -->
+                    <span class="text-white">
+                        <i class="bi bi-person-circle"></i> {{ current_user.username }}
+                    </span>
+                    <!-- Logout -->
+                    <a class="footer-icon-link" href="{{ url_for('logout') }}" title="Odjavi se">
+                        <i class="bi bi-box-arrow-right"></i>
+                    </a>
+                    {% endif %}
+                </div>
+            </div>
         </div>
     </footer>
     

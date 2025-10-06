@@ -43,7 +43,7 @@
                     <!-- Kategorija -->
                     <div class="mb-4">
                         <label class="form-label h5 text-white">
-                            <i class="bi bi-folder-fill"></i> 1. Izaberite Kategoriju
+                            <i class="bi bi-folder-fill"></i> <span data-i18n="scrape.step1.title">1. Izaberite Kategoriju</span>
                         </label>
                         <div class="row g-3" id="categorySelection">
                             {% for value, label in form.category.choices %}
@@ -63,13 +63,13 @@
                                         </div>
                                         <h5 class="card-title mb-0">
                                             {% if value == 'books' %}
-                                                Knjige
+                                                <span data-i18n="scrape.step1.books">Knjige</span>
                                             {% elif value == 'research' %}
-                                                Naučni Radovi
+                                                <span data-i18n="scrape.step1.research">Naučni Radovi</span>
                                             {% elif value == 'magazines' %}
-                                                Časopisi
+                                                <span data-i18n="scrape.step1.magazines">Časopisi</span>
                                             {% else %}
-                                                Dokumenti
+                                                <span data-i18n="scrape.step1.documents">Dokumenti</span>
                                             {% endif %}
                                         </h5>
                                     </div>
@@ -83,7 +83,7 @@
                     <!-- Izvor -->
                     <div class="mb-4" id="sourceSection" style="display: none;">
                         <label class="form-label h5 text-white">
-                            <i class="bi bi-globe2"></i> 2. Izaberite Izvor
+                            <i class="bi bi-globe2"></i> <span data-i18n="scrape.step2.title">2. Izaberite Izvor</span>
                         </label>
                         <div id="sourcesList" class="row g-3">
                             <!-- Popunjava se dinamički -->
@@ -94,10 +94,10 @@
                     <!-- Pretraga -->
                     <div class="mb-4" id="querySection" style="display: none;">
                         <label class="form-label h5 text-white">
-                            <i class="bi bi-search"></i> 3. Pretraga (opcionalno)
+                            <i class="bi bi-search"></i> <span data-i18n="scrape.step3.title">3. Kriterijum Pretrage (opciono)</span>
                         </label>
-                        {{ form.query(class="form-control form-control-lg", placeholder="npr. machine learning, python...") }}
-                        <small class="form-text text-visible">
+                        {{ form.query(class="form-control form-control-lg", **{'data-i18n-placeholder': 'scrape.step3.placeholder'}) }}
+                        <small class="form-text text-visible" data-i18n="scrape.step3.help">
                             Unesite ključne reči za pretragu (npr. "machine learning", "python")
                         </small>
                     </div>
@@ -105,17 +105,17 @@
                     <!-- Limit -->
                     <div class="mb-4" id="limitSection" style="display: none;">
                         <label class="form-label h5 text-white">
-                            <i class="bi bi-sliders"></i> 4. Broj Rezultata
+                            <i class="bi bi-sliders"></i> <span data-i18n="scrape.step4.title">4. Broj Rezultata</span>
                         </label>
                         {{ form.max_results(class="form-control form-control-lg") }}
-                        <small class="form-text text-visible">
+                        <small class="form-text text-visible" data-i18n="scrape.step4.help">
                             Maksimalan broj PDF fajlova za preuzimanje (1-500)
                         </small>
                     </div>
                     
                     <!-- Submit -->
                     <div class="d-grid gap-2" id="submitSection" style="display: none;">
-                        {{ form.submit(class="btn btn-primary btn-lg") }}
+                        {{ form.submit(class="btn btn-primary btn-lg", **{'data-i18n': 'scrape.submit'}) }}
                     </div>
                 </form>
             </div>
@@ -127,27 +127,28 @@
         <div class="card shadow-lg">
             <div class="card-body">
                 <h5 class="card-title text-white mb-4">
-                    <i class="bi bi-info-circle-fill me-2"></i> Pomoć
+                    <i class="bi bi-info-circle-fill me-2"></i> 
+                    <span data-i18n="scrape.help.title">Pomoć</span>
                 </h5>
                 <p class="text-white mb-3">
-                    <strong>Kako radi scraping?</strong>
+                    <strong data-i18n="scrape.help.howItWorks">Kako radi scraping?</strong>
                 </p>
                 <ol class="text-visible">
-                    <li class="mb-2">Izaberite kategoriju dokumenata</li>
-                    <li class="mb-2">Odaberite izvor podataka</li>
-                    <li class="mb-2">Opcionalno unesite pretragu</li>
-                    <li class="mb-2">Postavite broj rezultata</li>
-                    <li class="mb-2">Pokrenite scraping</li>
+                    <li class="mb-2" data-i18n="scrape.help.steps.step1">Izaberite kategoriju dokumenata</li>
+                    <li class="mb-2" data-i18n="scrape.help.steps.step2">Odaberite izvor podataka</li>
+                    <li class="mb-2" data-i18n="scrape.help.steps.step3">Opcionalno unesite pretragu</li>
+                    <li class="mb-2" data-i18n="scrape.help.steps.step4">Postavite broj rezultata</li>
+                    <li class="mb-2" data-i18n="scrape.help.steps.step5">Pokrenite scraping</li>
                 </ol>
                 <hr style="border-color: rgba(255,255,255,0.2);">
                 <p class="text-white mb-3">
-                    <strong>Dostupni izvori:</strong>
+                    <strong data-i18n="scrape.help.sources">Dostupni izvori:</strong>
                 </p>
                 <ul class="text-visible">
-                    <li class="mb-2"><strong class="text-gradient">arXiv</strong> - Naučni radovi</li>
-                    <li class="mb-2"><strong class="text-gradient">PubMed</strong> - Medicinski članci</li>
-                    <li class="mb-2"><strong class="text-gradient">Gutenberg</strong> - Besplatne knjige</li>
-                    <li class="mb-2"><strong class="text-gradient">Archive.org</strong> - Časopisi</li>
+                    <li class="mb-2"><strong class="text-gradient">arXiv</strong> - <span data-i18n="scrape.help.sourceDesc.arxiv">Naučni radovi</span></li>
+                    <li class="mb-2"><strong class="text-gradient">PubMed</strong> - <span data-i18n="scrape.help.sourceDesc.pubmed">Medicinski članci</span></li>
+                    <li class="mb-2"><strong class="text-gradient">Gutenberg</strong> - <span data-i18n="scrape.help.sourceDesc.gutenberg">Besplatne knjige</span></li>
+                    <li class="mb-2"><strong class="text-gradient">Archive.org</strong> - <span data-i18n="scrape.help.sourceDesc.archive">Časopisi</span></li>
                 </ul>
             </div>
         </div>

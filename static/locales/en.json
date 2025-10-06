@@ -4,6 +4,7 @@
     "dashboard": "Dashboard",
     "scrape": "Scrape",
     "files": "Files",
+    "about": "About",
     "profile": "Profile",
     "logout": "Logout"
   },
@@ -70,54 +71,58 @@
     },
     "step3": {
       "title": "3. Search Criteria (optional)",
-      "placeholder": "e.g. machine learning, python..."
+      "placeholder": "e.g. machine learning, python...",
+      "help": "Enter keywords to search (e.g. \"machine learning\", \"python\")"
     },
     "step4": {
-      "title": "4. Number of Results"
+      "title": "4. Number of Results",
+      "help": "Maximum number of PDF files to download (1-500)"
     },
     "submit": "Start Scraping",
     "help": {
       "title": "Help",
       "howItWorks": "How does scraping work?",
       "steps": {
-        "1": "Choose document category",
-        "2": "Select data source",
-        "3": "Optionally enter search query",
-        "4": "Set number of results",
-        "5": "Start scraping"
+        "step1": "Choose document category",
+        "step2": "Select data source",
+        "step3": "Optionally enter search query",
+        "step4": "Set number of results",
+        "step5": "Start scraping"
       },
-      "sources": {
-        "title": "Available sources:",
-        "arxiv": "arXiv - Research papers",
-        "pubmed": "PubMed - Medical articles",
-        "gutenberg": "Gutenberg - Free books",
-        "archive": "Archive.org - Magazines"
+      "sources": "Available sources:",
+      "sourceDesc": {
+        "arxiv": "Research papers",
+        "pubmed": "Medical articles",
+        "gutenberg": "Free books",
+        "archive": "Magazines"
       }
     }
   },
   "files": {
     "title": "My Files",
-    "subtitle": "All your downloaded PDFs",
+    "subtitle": "View and download PDF files",
     "filter": {
       "category": "Category",
-      "allCategories": "All categories",
-      "search": "Search files...",
-      "submit": "Filter"
+      "all": "All categories",
+      "search": "Search",
+      "searchPlaceholder": "Search by filename..."
     },
-    "total": "Total",
-    "filesCount": "files",
     "table": {
       "filename": "Filename",
       "category": "Category",
       "size": "Size",
       "date": "Date",
-      "actions": "Actions",
-      "download": "Download"
+      "actions": "Actions"
+    },
+    "actions": {
+      "download": "Download",
+      "copy": "Copy",
+      "delete": "Delete"
     },
     "empty": {
-      "title": "You don't have any files yet",
-      "subtitle": "Start scraping to download PDF files",
-      "button": "Start Scraping"
+      "title": "No downloaded files",
+      "subtitle": "Start downloading PDF documents",
+      "action": "Start Search"
     }
   },
   "profile": {
@@ -147,9 +152,55 @@
     "previous": "Previous",
     "search": "Search",
     "filter": "Filter",
-    "clear": "Clear"
+    "clear": "Clear",
+    "status": {
+      "completed": "Completed",
+      "running": "Running",
+      "failed": "Failed",
+      "pending": "Pending"
+    }
   },
   "footer": {
     "copyright": "© 2025 PDF Scraper. All rights reserved."
+  },
+  "about": {
+    "title": "About",
+    "subtitle": "Advanced PDF scraping with an elegant interface",
+    "description": "PDF Scraper is a modern web application designed to facilitate the download and organization of PDF documents from various sources on the internet. With an intuitive interface and powerful scraping capabilities, you can easily find and download the documents you need.",
+    "featuresTitle": "Features",
+    "features": {
+      "multiSource": "Multi-source support",
+      "multiSourceDesc": "Scrape from different platforms (arXiv, PubMed, Gutenberg, Archive.org)",
+      "darkLight": "Dark/Light theme",
+      "darkLightDesc": "Customize the interface to your preference",
+      "multilang": "Multilingual",
+      "multilangDesc": "Full support for Serbian and English",
+      "userManagement": "User management",
+      "userManagementDesc": "Secure authentication with flask-login",
+      "organized": "File organization",
+      "organizedDesc": "Automatic organization by categories",
+      "responsive": "Responsive design",
+      "responsiveDesc": "Works perfectly on all devices"
+    },
+    "techTitle": "Technologies",
+    "author": "Author",
+    "developerCreator": "Developer & Creator",
+    "supportTitle": "Support Project",
+    "supportDesc": "If you like this project, you can support further development.",
+    "donateBtn": "Donate via PayPal",
+    "donateThankYou": "Every donation is welcome! 💙",
+    "versionTitle": "Version",
+    "versionApp": "Application:",
+    "versionPython": "Python:",
+    "versionFlask": "Flask:",
+    "versionBootstrap": "Bootstrap:",
+    "versionCrawlee": "Crawlee:",
+    "versionStatus": "Status:",
+    "versionStatusActive": "Active",
+    "versionLicense": "License:",
+    "versionReleased": "Released: January 2025",
+    "openSource": "Open Source",
+    "openSourceDesc": "The project is available on GitHub as open source. Feel free to review the code, report bugs, or contribute to development!",
+    "viewOnGithub": "View on GitHub"
   }
 }

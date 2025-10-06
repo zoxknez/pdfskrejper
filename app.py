@@ -45,7 +45,7 @@ Settings.create_directories()
 @login_manager.user_loader
 def load_user(user_id):
     """Load user by ID."""
-    return User.query.get(int(user_id))
+    return db.session.get(User, int(user_id))
 
 
 # ==================== AUTHENTICATION ROUTES ====================
@@ -288,6 +288,12 @@ def profile():
     )
 
 
+@app.route('/about')
+def about():
+    """O programu stranica."""
+    return render_template('about.html')
+
+
 # ==================== API ROUTES ====================
 
 @app.route('/api/sources/<category>')
@@ -434,4 +440,4 @@ if __name__ == '__main__':
     print("⚠️  Za zaustavljanje: CTRL+C")
     print("=" * 60)
     
-    app.run(debug=True, use_reloader=False)
+    app.run(debug=True, use_reloader=True)

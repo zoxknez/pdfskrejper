@@ -1,0 +1,221 @@
+{% extends "base.html" %}
+
+{% block title %}О програму - PDF Scraper{% endblock %}
+
+{% block content %}
+<div class="row g-4">
+    <!-- Main Info Card -->
+    <div class="col-lg-8">
+        <div class="card shadow-lg mb-4 fade-in-up">
+            <div class="card-header">
+                <h4 class="mb-0 text-white">
+                    <i class="bi bi-info-circle-fill"></i> <span data-i18n="about.title">О програму</span>
+                </h4>
+            </div>
+            <div class="card-body p-4">
+                <div class="mb-4">
+                    <h5 class="text-gradient mb-3">
+                        <i class="bi bi-file-pdf-fill"></i> <span data-i18n="about.subtitle">Napredno skrejpovanje PDF fajlova sa elegantnim interfejsom</span>
+                    </h5>
+                    <p class="lead text-visible" data-i18n="about.description">
+                        PDF Skrejper je moderna web aplikacija dizajnirana da olakša preuzimanje i organizaciju PDF dokumenata iz raznih izvora na internetu. Sa intuitivnim interfejsom i moćnim mogućnostima skrejpovanja, možete lako da pronađete i preuzmete dokumente koja vam trebaju.
+                    </p>
+                </div>
+
+                <hr class="my-4" style="border-color: rgba(255, 255, 255, 0.1);">
+
+                <div class="mb-4">
+                    <h5 class="text-gradient mb-3">
+                        <i class="bi bi-star-fill"></i> <span data-i18n="about.featuresTitle">Karakteristike</span>
+                    </h5>
+                    <ul class="list-unstyled">
+                        <li class="mb-3">
+                            <i class="bi bi-check-circle-fill text-success me-2"></i>
+                            <strong class="text-white" data-i18n="about.features.multiSource">Podrška za više izvora</strong>
+                            <span class="text-visible" data-i18n="about.features.multiSourceDesc">Skrejpujte sa različitih platforma (arXiv, PubMed, Gutenberg, Archive.org)</span>
+                        </li>
+                        <li class="mb-3">
+                            <i class="bi bi-check-circle-fill text-success me-2"></i>
+                            <strong class="text-white" data-i18n="about.features.organized">Organizacija fajlova</strong>
+                            <span class="text-visible" data-i18n="about.features.organizedDesc">Automatsko organizovanje po kategorijama</span>
+                        </li>
+                        <li class="mb-3">
+                            <i class="bi bi-check-circle-fill text-success me-2"></i>
+                            <strong class="text-white" data-i18n="about.features.responsive">Responsive dizajn</strong>
+                            <span class="text-visible" data-i18n="about.features.responsiveDesc">Savršeno radi na svim uređajima</span>
+                        </li>
+                        <li class="mb-3">
+                            <i class="bi bi-check-circle-fill text-success me-2"></i>
+                            <strong class="text-white" data-i18n="about.features.userManagement">Upravljanje korisnicima</strong>
+                            <span class="text-visible" data-i18n="about.features.userManagementDesc">Sigurna autentifikacija sa flask-login</span>
+                        </li>
+                        <li class="mb-3">
+                            <i class="bi bi-check-circle-fill text-success me-2"></i>
+                            <strong class="text-white" data-i18n="about.features.multilang">Višejezičnost</strong>
+                            <span class="text-visible" data-i18n="about.features.multilangDesc">Potpuna podrška za srpski i engleski jezik</span>
+                        </li>
+                        <li class="mb-3">
+                            <i class="bi bi-check-circle-fill text-success me-2"></i>
+                            <strong class="text-white" data-i18n="about.features.darkLight">Dark/Light tema</strong>
+                            <span class="text-visible" data-i18n="about.features.darkLightDesc">Prilagodite interfejs po svojoj želji</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <hr class="my-4" style="border-color: rgba(255, 255, 255, 0.1);">
+
+                <div class="mb-4">
+                    <h5 class="text-gradient mb-3">
+                        <i class="bi bi-code-slash"></i> <span data-i18n="about.techTitle">Tehnologije</span>
+                    </h5>
+                    <div class="row g-3">
+                        <div class="col-md-6">
+                            <div class="tech-badge">
+                                <i class="bi bi-python"></i> Python 3.13
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="tech-badge">
+                                <i class="bi bi-globe"></i> Flask 3.0
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="tech-badge">
+                                <i class="bi bi-robot"></i> Crawlee 1.0
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="tech-badge">
+                                <i class="bi bi-browser-chrome"></i> Playwright
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="tech-badge">
+                                <i class="bi bi-database"></i> SQLAlchemy
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="tech-badge">
+                                <i class="bi bi-bootstrap"></i> Bootstrap 5
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <hr class="my-4" style="border-color: rgba(255, 255, 255, 0.1);">
+
+                <div>
+                    <h5 class="text-gradient mb-3">
+                        <i class="bi bi-github"></i> <span data-i18n="about.openSource">Open Source</span>
+                    </h5>
+                    <p class="text-visible mb-3" data-i18n="about.openSourceDesc">
+                        Projekat je dostupan na GitHub-u kao open source. Slobodno pregledajte kod, prijavite bugove ili doprinesite razvoju!
+                    </p>
+                    <a href="https://github.com/zoxknez/pdfskrejper" target="_blank" class="btn btn-gradient-primary">
+                        <i class="bi bi-github me-2"></i> <span data-i18n="about.viewOnGithub">Pogledaj na GitHub-u</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Sidebar -->
+    <div class="col-lg-4">
+        <!-- Author Card -->
+        <div class="card shadow-lg mb-4 fade-in-up" style="animation-delay: 0.1s;">
+            <div class="card-header">
+                <h5 class="mb-0 text-white">
+                    <i class="bi bi-person-circle"></i> <span data-i18n="about.author">Autor</span>
+                </h5>
+            </div>
+            <div class="card-body text-center p-4">
+                <div class="mb-3">
+                    <i class="bi bi-code-square" style="font-size: 3rem; background: var(--primary-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent;"></i>
+                </div>
+                <h5 class="text-white mb-2">zoxknez</h5>
+                <p class="text-visible mb-3" style="font-size: 0.875rem;" data-i18n="about.developerCreator">
+                    Developer & Creator
+                </p>
+                
+                <div class="row g-2">
+                    <div class="col-6">
+                        <a href="https://github.com/zoxknez" target="_blank" class="btn btn-gradient-primary w-100" style="font-size: 0.85rem; padding: 0.5rem 0.75rem;">
+                            <i class="bi bi-github me-1"></i> GitHub
+                        </a>
+                    </div>
+                    <div class="col-6">
+                        <a href="mailto:zoxknez@hotmail.com" class="btn btn-gradient-info w-100" style="font-size: 0.85rem; padding: 0.5rem 0.75rem;">
+                            <i class="bi bi-envelope-fill me-1"></i> Email
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Support Card -->
+        <div class="card shadow-lg mb-4 fade-in-up" style="animation-delay: 0.2s;">
+            <div class="card-header">
+                <h5 class="mb-0 text-white">
+                    <i class="bi bi-heart-fill text-danger"></i> <span data-i18n="about.supportTitle">Podrži projekat</span>
+                </h5>
+            </div>
+            <div class="card-body p-4">
+                <p class="text-visible mb-3" style="font-size: 0.9rem;" data-i18n="about.supportDesc">
+                    Ako ti se dopada ovaj projekat, možeš podržati razvoj.
+                </p>
+                <a href="https://www.paypal.com/paypalme/o0o0o0o0o0o0o" target="_blank" class="btn btn-gradient-success w-100">
+                    <i class="bi bi-paypal me-2"></i> <span data-i18n="about.donateBtn">Doniraj via PayPal</span>
+                </a>
+                <p class="text-muted text-center mt-3 mb-0" style="font-size: 0.875rem;" data-i18n="about.donateThankYou">
+                    Svaka donacija je dobrodošla! 💙
+                </p>
+            </div>
+        </div>
+
+        <!-- Version Card -->
+        <div class="card shadow-lg fade-in-up" style="animation-delay: 0.3s;">
+            <div class="card-header">
+                <h5 class="mb-0 text-white">
+                    <i class="bi bi-info-square"></i> <span data-i18n="about.versionTitle">Verzija</span>
+                </h5>
+            </div>
+            <div class="card-body p-4">
+                <div class="d-flex justify-content-between align-items-center mb-2">
+                    <span class="text-visible" data-i18n="about.versionApp">Aplikacija:</span>
+                    <span class="badge" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white;">v1.0.0</span>
+                </div>
+                <div class="d-flex justify-content-between align-items-center mb-2">
+                    <span class="text-visible" data-i18n="about.versionPython">Python:</span>
+                    <span class="badge" style="background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%); color: white;">3.13</span>
+                </div>
+                <div class="d-flex justify-content-between align-items-center mb-2">
+                    <span class="text-visible" data-i18n="about.versionFlask">Flask:</span>
+                    <span class="badge" style="background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%); color: white;">3.0</span>
+                </div>
+                <div class="d-flex justify-content-between align-items-center mb-2">
+                    <span class="text-visible" data-i18n="about.versionBootstrap">Bootstrap:</span>
+                    <span class="badge" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white;">5.3.2</span>
+                </div>
+                <div class="d-flex justify-content-between align-items-center mb-2">
+                    <span class="text-visible" data-i18n="about.versionCrawlee">Crawlee:</span>
+                    <span class="badge" style="background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%); color: white;">1.0</span>
+                </div>
+                <div class="d-flex justify-content-between align-items-center mb-2">
+                    <span class="text-visible" data-i18n="about.versionStatus">Status:</span>
+                    <span class="badge" style="background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%); color: white;">
+                        <i class="bi bi-check-circle-fill me-1"></i><span data-i18n="about.versionStatusActive">Aktivan</span>
+                    </span>
+                </div>
+                <div class="d-flex justify-content-between align-items-center">
+                    <span class="text-visible" data-i18n="about.versionLicense">Licenca:</span>
+                    <span class="badge" style="background: linear-gradient(135deg, #fa709a 0%, #fee140 100%); color: white;">MIT</span>
+                </div>
+                <hr class="my-3" style="border-color: rgba(255,255,255,0.1);">
+                <p class="text-muted text-center mb-0" style="font-size: 0.875rem;" data-i18n="about.versionReleased">
+                    <i class="bi bi-calendar3 me-1"></i> Objavljen: Januar 2025
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
