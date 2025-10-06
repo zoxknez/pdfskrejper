@@ -10,7 +10,8 @@ class LanguageManager {
     async loadTranslations() {
         try {
             console.log('🌍 Loading translations for:', this.currentLang);
-            const response = await fetch(`/static/locales/${this.currentLang}.json`);
+            const cacheBust = Date.now();
+            const response = await fetch(`/static/locales/${this.currentLang}.json?v=${cacheBust}`);
             
             if (!response.ok) {
                 throw new Error(`HTTP ${response.status}: ${response.statusText}`);
@@ -33,6 +34,11 @@ class LanguageManager {
             const key = element.getAttribute('data-i18n');
             const translation = this.getNestedTranslation(key);
             if (translation) {
+                // Check if translation is an object (error case)
+                if (typeof translation === 'object') {
+                    console.error('❌ Translation is object for key:', key, translation);
+                    return;
+                }
                 element.textContent = translation;
                 translatedCount++;
             } else {
@@ -50,10 +56,30 @@ class LanguageManager {
             }
         });
 
+        // Update button values
+        document.querySelectorAll('[data-i18n-value]').forEach(element => {
+            const key = element.getAttribute('data-i18n-value');
+            const translation = this.getNestedTranslation(key);
+            if (translation) {
+                element.value = translation;
+                translatedCount++;
+            }
+        });
+
+        // Update option elements in select dropdowns
+        document.querySelectorAll('option[data-i18n]').forEach(element => {
+            const key = element.getAttribute('data-i18n');
+            const translation = this.getNestedTranslation(key);
+            if (translation) {
+                element.textContent = translation;
+                translatedCount++;
+            }
+        });
+
         // Update language flag icon
         const langFlag = document.getElementById('langFlag');
         if (langFlag) {
-            langFlag.textContent = this.currentLang === 'sr' ? '🇷🇸' : '🇬🇧';
+            langFlag.textContent = this.currentLang === 'sr' ? 'SRB' : 'EN';
         }
         
         console.log(`🌍 Applied ${translatedCount} translations`);

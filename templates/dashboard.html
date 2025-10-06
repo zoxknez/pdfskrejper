@@ -3,15 +3,6 @@
 {% block title %}Dashboard - PDF Scraper{% endblock %}
 
 {% block content %}
-<div class="row mb-5 fade-in-down">
-    <div class="col">
-        <h1 class="display-4">
-            <i class="bi bi-speedometer2"></i> Dashboard
-        </h1>
-        <p class="lead">Dobrodošli nazad, <strong>{{ current_user.username }}</strong>! 👋</p>
-    </div>
-</div>
-
 <!-- Statistics Cards -->
 <div class="row g-4 mb-5">
     <div class="col-md-4 fade-in-up">
@@ -46,28 +37,26 @@
 </div>
 
 <!-- Quick Actions -->
-<div class="row mb-5 fade-in-left">
-    <div class="col">
-        <div class="card shadow-lg hover-lift">
-            <div class="card-header">
-                <h5 class="mb-0">
-                    <i class="bi bi-lightning-charge-fill"></i> Brze Akcije
-                </h5>
-            </div>
-            <div class="card-body p-4">
-                <div class="row g-4">
-                    <div class="col-md-6">
-                        <a href="{{ url_for('scrape') }}" class="btn btn-primary w-100 btn-lg">
-                            <i class="bi bi-play-circle-fill me-2"></i> 
-                            Pokreni Novi Scraping
-                        </a>
-                    </div>
-                    <div class="col-md-6">
-                        <a href="{{ url_for('files') }}" class="btn btn-outline-primary w-100 btn-lg">
-                            <i class="bi bi-folder2-open me-2"></i> 
-                            Pregledaj Fajlove
-                        </a>
-                    </div>
+<div class="mb-5 fade-in-left">
+    <div class="card shadow-lg hover-lift">
+        <div class="card-header">
+            <h5 class="mb-0 text-white">
+                <i class="bi bi-lightning-charge-fill"></i> <span data-i18n="dashboard.quickActions.title">Brze Akcije</span>
+            </h5>
+        </div>
+        <div class="card-body p-4">
+            <div class="row g-4">
+                <div class="col-md-6">
+                    <a href="{{ url_for('scrape') }}" class="btn btn-gradient-primary w-100 btn-lg">
+                        <i class="bi bi-play-circle-fill me-2"></i> 
+                        <span data-i18n="dashboard.quickActions.newScrape">Pokreni Novi Scraping</span>
+                    </a>
+                </div>
+                <div class="col-md-6">
+                    <a href="{{ url_for('files') }}" class="btn btn-gradient-info w-100 btn-lg">
+                        <i class="bi bi-folder2-open me-2"></i> 
+                        <span data-i18n="dashboard.quickActions.viewFiles">Pregledaj Fajlove</span>
+                    </a>
                 </div>
             </div>
         </div>
@@ -75,13 +64,12 @@
 </div>
 
 <!-- Recent Jobs Table -->
-<div class="row fade-in-up" style="animation-delay: 0.3s;">
-    <div class="col">
-        <div class="card shadow-lg">
-            <div class="card-header">
-                <div class="d-flex justify-content-between align-items-center">
+<div class="fade-in-up" style="animation-delay: 0.3s;">
+    <div class="card shadow-lg">
+        <div class="card-header">
+            <div class="d-flex justify-content-between align-items-center">
                     <h5 class="mb-0">
-                        <i class="bi bi-clock-history"></i> Nedavni Job-ovi
+                        <i class="bi bi-clock-history"></i> <span data-i18n="dashboard.recentJobs.title">Nedavni Job-ovi</span>
                     </h5>
                     {% if recent_jobs %}
                     <span class="badge bg-primary">{{ recent_jobs|length }}</span>
@@ -95,11 +83,11 @@
                         <thead>
                             <tr>
                                 <th>ID</th>
-                                <th>Kategorija</th>
-                                <th>Izvor</th>
-                                <th>Status</th>
+                                <th data-i18n="dashboard.recentJobs.category">Kategorija</th>
+                                <th data-i18n="dashboard.recentJobs.source">Izvor</th>
+                                <th data-i18n="dashboard.recentJobs.status">Status</th>
                                 <th>Datum</th>
-                                <th></th>
+                                <th data-i18n="dashboard.recentJobs.actions">Akcije</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -121,13 +109,13 @@
                                 <td>
                                     <span class="badge {{ 'bg-success' if job.status == 'completed' else 'bg-primary' if job.status == 'running' else 'bg-danger' if job.status == 'failed' else 'bg-secondary' }}">
                                         {% if job.status == 'completed' %}
-                                            <i class="bi bi-check-circle-fill"></i> Završeno
+                                            <i class="bi bi-check-circle-fill"></i> <span data-i18n="common.status.completed">Završeno</span>
                                         {% elif job.status == 'running' %}
-                                            <i class="bi bi-arrow-clockwise spinner-grow spinner-grow-sm"></i> U toku
+                                            <i class="bi bi-arrow-clockwise spinner-grow spinner-grow-sm"></i> <span data-i18n="common.status.running">U toku</span>
                                         {% elif job.status == 'failed' %}
-                                            <i class="bi bi-x-circle-fill"></i> Neuspešno
+                                            <i class="bi bi-x-circle-fill"></i> <span data-i18n="common.status.failed">Neuspešno</span>
                                         {% else %}
-                                            <i class="bi bi-clock-fill"></i> Na čekanju
+                                            <i class="bi bi-clock-fill"></i> <span data-i18n="common.status.pending">Na čekanju</span>
                                         {% endif %}
                                     </span>
                                 </td>
@@ -140,7 +128,7 @@
                                 <td class="text-end">
                                     <a href="{{ url_for('job_status', job_id=job.id) }}" 
                                        class="btn btn-sm btn-outline-primary hover-lift">
-                                        <i class="bi bi-eye-fill"></i> Detalji
+                                        <i class="bi bi-eye-fill"></i> <span data-i18n="dashboard.recentJobs.view">Detalji</span>
                                     </a>
                                 </td>
                             </tr>
@@ -153,10 +141,10 @@
                     <div class="mb-4" style="animation: float 3s ease-in-out infinite;">
                         <i class="bi bi-inbox" style="font-size: 5rem; opacity: 0.3; color: var(--text-secondary);"></i>
                     </div>
-                    <h5 class="empty-state-title mb-3">Još uvek nemate job-ove</h5>
-                    <p class="empty-state-text mb-4">Pokrenite prvi scraping i počnite sa preuzimanjem PDF dokumenata!</p>
+                    <h5 class="empty-state-title mb-3" data-i18n="dashboard.recentJobs.empty">Još uvek nemate job-ove</h5>
+                    <p class="empty-state-text mb-4" data-i18n="dashboard.recentJobs.startFirst">Pokrenite prvi scraping i počnite sa preuzimanjem PDF dokumenata!</p>
                     <a href="{{ url_for('scrape') }}" class="btn btn-primary btn-lg">
-                        <i class="bi bi-play-circle-fill me-2"></i> Pokrenite Prvi Scraping
+                        <i class="bi bi-play-circle-fill me-2"></i> <span data-i18n="dashboard.recentJobs.startButton">Pokrenite Prvi Scraping</span>
                     </a>
                 </div>
                 {% endif %}
@@ -316,6 +304,5 @@
                 {% endif %}
             </div>
         </div>
-    </div>
 </div>
 {% endblock %}

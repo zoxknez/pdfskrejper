@@ -3,28 +3,20 @@
 {% block title %}Profil - PDF Scraper{% endblock %}
 
 {% block content %}
-<div class="row mb-4">
-    <div class="col">
-        <h1 class="display-5">
-            <i class="bi bi-person-circle"></i> Moj Profil
-        </h1>
-    </div>
-</div>
-
 <div class="row g-4">
     <!-- User Info -->
     <div class="col-lg-4">
-        <div class="card shadow">
+        <div class="card shadow profile-user-card">
             <div class="card-body text-center">
-                <div class="mb-3">
-                    <i class="bi bi-person-circle" style="font-size: 5rem; color: #0d6efd;"></i>
+                <div class="mb-3 profile-avatar">
+                    <i class="bi bi-person-circle"></i>
                 </div>
-                <h4 class="card-title">{{ current_user.username }}</h4>
-                <p class="text-muted mb-0">{{ current_user.email }}</p>
-                <hr>
-                <p class="small text-muted mb-0">
-                    <i class="bi bi-calendar"></i>
-                    Član od: {{ current_user.created_at.strftime('%d.%m.%Y') }}
+                <h4 class="card-title profile-username">{{ current_user.username }}</h4>
+                <p class="profile-email mb-0">{{ current_user.email }}</p>
+                <hr class="profile-divider">
+                <p class="profile-member-since mb-0">
+                    <i class="bi bi-calendar me-2"></i>
+                    <span data-i18n="profile.memberSince">Član od:</span> {{ current_user.created_at.strftime('%d.%m.%Y') }}
                 </p>
             </div>
         </div>
@@ -32,76 +24,87 @@
     
     <!-- Statistics -->
     <div class="col-lg-8">
-        <div class="card shadow mb-4">
-            <div class="card-header bg-white">
+        <div class="card shadow mb-4 profile-stats-card">
+            <div class="card-header profile-card-header">
                 <h5 class="mb-0">
-                    <i class="bi bi-graph-up"></i> Statistika
+                    <i class="bi bi-graph-up me-2"></i><span data-i18n="profile.statistics">Statistika</span>
                 </h5>
             </div>
             <div class="card-body">
                 <div class="row text-center">
                     <div class="col-md-4 mb-3">
-                        <div class="p-3 bg-primary bg-opacity-10 rounded">
-                            <h2 class="text-primary mb-0">{{ stats.total_jobs }}</h2>
-                            <p class="small text-muted mb-0">Ukupno Job-ova</p>
+                        <div class="profile-stat-box profile-stat-primary">
+                            <i class="bi bi-briefcase profile-stat-icon"></i>
+                            <h2 class="profile-stat-value">{{ stats.total_jobs }}</h2>
+                            <p class="profile-stat-label mb-0" data-i18n="profile.totalJobs">Ukupno Job-ova</p>
                         </div>
                     </div>
                     <div class="col-md-4 mb-3">
-                        <div class="p-3 bg-success bg-opacity-10 rounded">
-                            <h2 class="text-success mb-0">{{ stats.completed_jobs }}</h2>
-                            <p class="small text-muted mb-0">Završeno</p>
+                        <div class="profile-stat-box profile-stat-success">
+                            <i class="bi bi-check-circle profile-stat-icon"></i>
+                            <h2 class="profile-stat-value">{{ stats.completed_jobs }}</h2>
+                            <p class="profile-stat-label mb-0" data-i18n="profile.completed">Završeno</p>
                         </div>
                     </div>
                     <div class="col-md-4 mb-3">
-                        <div class="p-3 bg-info bg-opacity-10 rounded">
-                            <h2 class="text-info mb-0">{{ stats.total_files }}</h2>
-                            <p class="small text-muted mb-0">Preuzeto Fajlova</p>
+                        <div class="profile-stat-box profile-stat-info">
+                            <i class="bi bi-file-earmark-pdf profile-stat-icon"></i>
+                            <h2 class="profile-stat-value">{{ stats.total_files }}</h2>
+                            <p class="profile-stat-label mb-0" data-i18n="profile.downloadedFiles">Preuzeto Fajlova</p>
                         </div>
                     </div>
                 </div>
                 
-                <hr>
+                <hr class="profile-section-divider">
                 
                 <div class="row">
                     <div class="col-md-6">
-                        <h6 class="text-muted">Omiljene Kategorije</h6>
-                        <ul class="list-unstyled">
+                        <h6 class="profile-section-title">
+                            <i class="bi bi-star-fill me-2"></i><span data-i18n="profile.favoriteCategories">Omiljene Kategorije</span>
+                        </h6>
+                        <ul class="list-unstyled profile-category-list">
                             {% for cat in category_stats %}
-                            <li class="mb-2">
-                                <span class="badge bg-secondary">{{ cat.category }}</span>
-                                {{ cat.count }} job-ova
+                            <li class="profile-category-item mb-2">
+                                <span class="badge profile-category-badge">{{ cat.category }}</span>
+                                <span class="profile-category-count">{{ cat.count }} <span data-i18n="profile.jobs">job-ova</span></span>
                             </li>
                             {% endfor %}
                         </ul>
                     </div>
                     <div class="col-md-6">
-                        <h6 class="text-muted">Ukupna Veličina</h6>
-                        <p class="h4">{{ total_size }} MB</p>
+                        <h6 class="profile-section-title">
+                            <i class="bi bi-hdd-fill me-2"></i><span data-i18n="profile.totalSize">Ukupna Veličina</span>
+                        </h6>
+                        <p class="profile-total-size">{{ total_size }} <span class="profile-size-unit">MB</span></p>
                     </div>
                 </div>
             </div>
         </div>
         
         <!-- Recent Activity -->
-        <div class="card shadow">
-            <div class="card-header bg-white">
+        <div class="card shadow profile-activity-card">
+            <div class="card-header profile-card-header">
                 <h5 class="mb-0">
-                    <i class="bi bi-clock-history"></i> Nedavna Aktivnost
+                    <i class="bi bi-clock-history me-2"></i><span data-i18n="profile.recentActivity">Nedavna Aktivnost</span>
                 </h5>
             </div>
             <div class="card-body p-0">
                 <div class="list-group list-group-flush">
                     {% for job in recent_jobs %}
-                    <div class="list-group-item">
+                    <div class="list-group-item profile-activity-item">
                         <div class="d-flex justify-content-between align-items-center">
-                            <div>
-                                <strong>{{ job.source_name }}</strong> - {{ job.category }}
+                            <div class="profile-activity-info">
+                                <strong class="profile-activity-name">{{ job.source_name }}</strong> 
+                                <span class="profile-activity-separator">-</span> 
+                                <span class="profile-activity-category">{{ job.category }}</span>
                                 <br>
-                                <small class="text-muted">
+                                <small class="profile-activity-date">
+                                    <i class="bi bi-clock me-1"></i>
                                     {{ job.created_at.strftime('%d.%m.%Y %H:%M') }}
                                 </small>
                             </div>
-                            <span class="badge {{ 'bg-success' if job.status == 'completed' else 'bg-primary' if job.status == 'running' else 'bg-danger' }}">
+                            <span class="badge profile-status-badge {{ 'profile-status-completed' if job.status == 'completed' else 'profile-status-running' if job.status == 'running' else 'profile-status-failed' }}">
+                                <i class="bi {{ 'bi-check-circle' if job.status == 'completed' else 'bi-arrow-clockwise' if job.status == 'running' else 'bi-x-circle' }} me-1"></i>
                                 {{ job.status }}
                             </span>
                         </div>

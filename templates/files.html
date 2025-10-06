@@ -1,122 +1,181 @@
 {% extends "base.html" %}
 
-{% block title %}Moji Fajlovi - PDF Scraper{% endblock %}
+{% block title %}<span data-i18n="files.title">Moji Fajlovi</span> - PDF Scraper{% endblock %}
 
 {% block content %}
-<div class="row mb-4">
-    <div class="col">
-        <h1 class="display-5">
-            <i class="bi bi-files"></i> Moji Fajlovi
-        </h1>
-        <p class="lead">Svi preuzeti PDF dokumenti</p>
+<div class="container-fluid py-4">
+    <!-- Page Header -->
+    <div class="row mb-4">
+        <div class="col-12">
+            <div class="card shadow-sm">
+                <div class="card-body">
+                    <h2 class="mb-2">
+                        <i class="fas fa-folder-open me-2"></i>
+                        <span data-i18n="files.title">Moji Fajlovi</span>
+                    </h2>
+                    <p class="text-muted mb-0" data-i18n="files.subtitle">
+                        Pregledaj i preuzmi PDF fajlove
+                    </p>
+                </div>
+            </div>
+        </div>
     </div>
-</div>
 
-<!-- Filters -->
-<div class="card shadow mb-4">
-    <div class="card-body">
-        <form method="GET" action="">
-            <div class="row g-3">
-                <div class="col-md-4">
-                    <label class="form-label">Kategorija</label>
-                    <select class="form-select" name="category">
-                        <option value="">Sve kategorije</option>
-                        <option value="books" {% if request.args.get('category') == 'books' %}selected{% endif %}>Knjige</option>
-                        <option value="research" {% if request.args.get('category') == 'research' %}selected{% endif %}>Naučni Radovi</option>
-                        <option value="magazines" {% if request.args.get('category') == 'magazines' %}selected{% endif %}>Časopisi</option>
-                        <option value="documents" {% if request.args.get('category') == 'documents' %}selected{% endif %}>Dokumenti</option>
-                    </select>
-                </div>
-                <div class="col-md-5">
-                    <label class="form-label">Pretraga</label>
-                    <input type="text" class="form-control" name="search" 
-                           value="{{ request.args.get('search', '') }}"
-                           placeholder="Naziv fajla...">
-                </div>
-                <div class="col-md-3">
-                    <label class="form-label">&nbsp;</label>
-                    <div class="d-grid">
-                        <button type="submit" class="btn btn-primary">
-                            <i class="bi bi-search"></i> Filtriraj
-                        </button>
+    <!-- Filter Section -->
+    <div class="row mb-4">
+        <div class="col-12">
+            <div class="card shadow-sm">
+                <div class="card-body">
+                    <div class="row g-3">
+                        <!-- Category Filter -->
+                        <div class="col-md-4">
+                            <label for="categoryFilter" class="form-label" data-i18n="files.filter.category">
+                                Kategorija
+                            </label>
+                            <select id="categoryFilter" class="form-select">
+                                <option value="all" data-i18n="files.filter.all">Sve kategorije</option>
+                                <option value="books" data-i18n="scrape.step1.books">Knjige</option>
+                                <option value="research" data-i18n="scrape.step1.research">Naučni radovi</option>
+                                <option value="magazines" data-i18n="scrape.step1.magazines">Časopisi</option>
+                                <option value="documents" data-i18n="scrape.step1.documents">Dokumenti</option>
+                            </select>
+                        </div>
+
+                        <!-- Search -->
+                        <div class="col-md-6">
+                            <label for="searchFilter" class="form-label" data-i18n="files.filter.search">
+                                Pretraga
+                            </label>
+                            <input 
+                                type="text" 
+                                id="searchFilter" 
+                                class="form-control" 
+                                data-i18n-placeholder="files.filter.searchPlaceholder"
+                                placeholder="Pretraži po imenu fajla...">
+                        </div>
+
+                        <!-- Search Button -->
+                        <div class="col-md-2 d-flex align-items-end">
+                            <button type="button" class="btn btn-primary w-100" id="filterBtn">
+                                <i class="bi bi-search"></i> <span data-i18n="files.filter.submit">Filtriraj</span>
+                            </button>
+                        </div>
                     </div>
                 </div>
             </div>
-        </form>
+        </div>
+    </div>
+
+    <!-- Files Table -->
+    <div class="row">
+        <div class="col-12">
+            <div class="card shadow-sm">
+                <div class="card-body">
+                    {% if files %}
+                    <div class="table-responsive">
+                        <table class="table table-hover">
+                            <thead>
+                                <tr>
+                                    <th data-i18n="files.table.filename">Ime fajla</th>
+                                    <th data-i18n="files.table.category">Kategorija</th>
+                                    <th data-i18n="files.table.size">Veličina</th>
+                                    <th data-i18n="files.table.date">Datum</th>
+                                    <th data-i18n="files.table.actions">Akcije</th>
+                                </tr>
+                            </thead>
+                            <tbody id="filesTableBody">
+                                {% for file in files %}
+                                <tr data-category="{{ file.category }}">
+                                    <td>
+                                        <i class="fas fa-file-pdf text-danger me-2"></i>
+                                        <span class="file-name">{{ file.filename }}</span>
+                                    </td>
+                                    <td>
+                                        <span class="badge" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white;" data-i18n="scrape.step1.{{ file.category }}">
+                                            {{ file.category.title() }}
+                                        </span>
+                                    </td>
+                                    <td>{{ (file.file_size / 1024 / 1024)|round(2) }} MB</td>
+                                    <td>{{ file.created_at.strftime('%d.%m.%Y %H:%M') }}</td>
+                                    <td>
+                                        <a href="{{ url_for('download_file', file_id=file.id) }}" 
+                                           class="btn btn-sm btn-gradient-primary me-1"
+                                           data-i18n="files.actions.download">
+                                            <i class="fas fa-download"></i> Preuzmi
+                                        </a>
+                                        <button onclick="copyToClipboard('{{ file.file_path }}')" 
+                                                class="btn btn-sm btn-gradient-info me-1"
+                                                data-i18n="files.actions.copy">
+                                            <i class="fas fa-copy"></i> Kopiraj
+                                        </button>
+                                        <a href="{{ url_for('delete_file', file_id=file.id) }}" 
+                                           class="btn btn-sm btn-gradient-danger"
+                                           onclick="return confirm('Da li ste sigurni da želite obrisati ovaj fajl?')"
+                                           data-i18n="files.actions.delete">
+                                            <i class="fas fa-trash"></i> Obriši
+                                        </a>
+                                    </td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                    {% else %}
+                    <!-- Empty State -->
+                    <div class="text-center py-5">
+                        <i class="fas fa-folder-open fa-4x text-muted mb-3"></i>
+                        <h4 class="text-muted" data-i18n="files.empty.title">Nema preuzetih fajlova</h4>
+                        <p class="text-muted mb-4" data-i18n="files.empty.subtitle">
+                            Započni preuzimanje PDF dokumenata
+                        </p>
+                        <a href="{{ url_for('scrape') }}" class="btn btn-gradient-primary">
+                            <i class="fas fa-search me-2"></i>
+                            <span data-i18n="files.empty.action">Započni Pretragu</span>
+                        </a>
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
     </div>
 </div>
 
-<!-- Files List -->
-<div class="card shadow">
-    <div class="card-header">
-        <div class="d-flex justify-content-between align-items-center">
-            <h5 class="mb-0 text-white">
-                <i class="bi bi-file-earmark-pdf-fill"></i> 
-                Ukupno: <span class="text-gradient">{{ files|length }}</span> fajlova
-            </h5>
-        </div>
-    </div>
-    <div class="card-body p-0">
-        {% if files %}
-        <div class="table-responsive">
-            <table class="table table-hover mb-0">
-                <thead class="table-light">
-                    <tr>
-                        <th>Fajl</th>
-                        <th>Kategorija</th>
-                        <th>Veličina</th>
-                        <th>Preuzeto</th>
-                        <th class="text-end">Akcije</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {% for file in files %}
-                    <tr>
-                        <td>
-                            <i class="bi bi-file-pdf text-danger"></i>
-                            <strong>{{ file.filename }}</strong>
-                        </td>
-                        <td>
-                            <span class="badge bg-secondary">{{ file.category }}</span>
-                        </td>
-                        <td>{{ file.file_size_mb }} MB</td>
-                        <td>
-                            <small class="text-muted">
-                                {{ file.created_at.strftime('%d.%m.%Y %H:%M') }}
-                            </small>
-                        </td>
-                        <td class="text-end">
-                            <div class="btn-group btn-group-sm">
-                                <a href="{{ file.filepath }}" 
-                                   class="btn btn-outline-primary"
-                                   download
-                                   title="Preuzmi">
-                                    <i class="bi bi-download"></i>
-                                </a>
-                                <button class="btn btn-outline-info"
-                                        onclick="copyToClipboard('{{ file.filepath }}')"
-                                        title="Kopiraj putanju">
-                                    <i class="bi bi-clipboard"></i>
-                                </button>
-                            </div>
-                        </td>
-                    </tr>
-                    {% endfor %}
-                </tbody>
-            </table>
-        </div>
-        {% else %}
-        <div class="text-center py-5">
-            <div class="mb-4" style="animation: float 3s ease-in-out infinite;">
-                <i class="bi bi-inbox" style="font-size: 5rem; opacity: 0.3; color: var(--text-secondary);"></i>
-            </div>
-            <h5 class="empty-state-title mb-3">Nema preuzetih fajlova</h5>
-            <p class="empty-state-text mb-4">Pokrenite scraping job da biste preuzeli PDF dokumente!</p>
-            <a href="{{ url_for('scrape') }}" class="btn btn-primary btn-lg mt-2">
-                <i class="bi bi-play-circle-fill me-2"></i> Pokreni Scraping
-            </a>
-        </div>
-        {% endif %}
-    </div>
-</div>
+<script>
+// Copy to clipboard function
+function copyToClipboard(text) {
+    navigator.clipboard.writeText(text).then(function() {
+        alert('Putanja kopirana u clipboard!');
+    }, function(err) {
+        console.error('Greška pri kopiranju: ', err);
+    });
+}
+
+// Filter functionality
+document.addEventListener('DOMContentLoaded', function() {
+    const categoryFilter = document.getElementById('categoryFilter');
+    const searchFilter = document.getElementById('searchFilter');
+    const tableBody = document.getElementById('filesTableBody');
+
+    function filterFiles() {
+        if (!tableBody) return;
+        
+        const categoryValue = categoryFilter.value;
+        const searchValue = searchFilter.value.toLowerCase();
+        const rows = tableBody.getElementsByTagName('tr');
+
+        for (let row of rows) {
+            const category = row.getAttribute('data-category');
+            const fileName = row.querySelector('.file-name').textContent.toLowerCase();
+            
+            const categoryMatch = categoryValue === 'all' || category === categoryValue;
+            const searchMatch = fileName.includes(searchValue);
+            
+            row.style.display = (categoryMatch && searchMatch) ? '' : 'none';
+        }
+    }
+
+    if (categoryFilter) categoryFilter.addEventListener('change', filterFiles);
+    if (searchFilter) searchFilter.addEventListener('input', filterFiles);
+});
+</script>
 {% endblock %}

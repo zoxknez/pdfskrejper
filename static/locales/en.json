@@ -33,6 +33,7 @@
   "dashboard": {
     "title": "Dashboard",
     "subtitle": "Overview of your activities",
+    "welcome": "Welcome back",
     "stats": {
       "totalJobs": "Total Jobs",
       "completed": "Completed",
@@ -52,7 +53,8 @@
       "actions": "Actions",
       "view": "View",
       "empty": "You don't have any scraping jobs yet",
-      "startFirst": "Start your first scraping"
+      "startFirst": "Start your first scraping and begin downloading PDF documents!",
+      "startButton": "Start Your First Scraping"
     }
   },
   "scrape": {
@@ -70,28 +72,30 @@
     },
     "step3": {
       "title": "3. Search Criteria (optional)",
-      "placeholder": "e.g. machine learning, python..."
+      "placeholder": "e.g. machine learning, python...",
+      "help": "Enter keywords for search (e.g. \"machine learning\", \"python\")"
     },
     "step4": {
-      "title": "4. Number of Results"
+      "title": "4. Number of Results",
+      "help": "Maximum number of PDF files to download (1-500)"
     },
     "submit": "Start Scraping",
     "help": {
       "title": "Help",
       "howItWorks": "How does scraping work?",
       "steps": {
-        "1": "Choose document category",
-        "2": "Select data source",
-        "3": "Optionally enter search query",
-        "4": "Set number of results",
-        "5": "Start scraping"
+        "step1": "Choose document category",
+        "step2": "Select data source",
+        "step3": "Optionally enter search query",
+        "step4": "Set number of results",
+        "step5": "Start scraping"
       },
-      "sources": {
-        "title": "Available sources:",
-        "arxiv": "arXiv - Research papers",
-        "pubmed": "PubMed - Medical articles",
-        "gutenberg": "Gutenberg - Free books",
-        "archive": "Archive.org - Magazines"
+      "sources": "Available sources:",
+      "sourceDesc": {
+        "arxiv": "Research papers",
+        "pubmed": "Medical articles",
+        "gutenberg": "Free books",
+        "archive": "Magazines"
       }
     }
   },
@@ -100,9 +104,12 @@
     "subtitle": "All your downloaded PDFs",
     "filter": {
       "category": "Category",
+      "all": "All categories",
       "allCategories": "All categories",
-      "search": "Search files...",
-      "submit": "Filter"
+      "search": "Search",
+      "searchPlaceholder": "Search by filename...",
+      "submit": "Filter",
+      "submitText": "Filter"
     },
     "total": "Total",
     "filesCount": "files",
@@ -111,8 +118,12 @@
       "category": "Category",
       "size": "Size",
       "date": "Date",
-      "actions": "Actions",
-      "download": "Download"
+      "actions": "Actions"
+    },
+    "actions": {
+      "download": "Download",
+      "copy": "Copy Path",
+      "delete": "Delete"
     },
     "empty": {
       "title": "You don't have any files yet",
@@ -123,6 +134,15 @@
   "profile": {
     "title": "Profile",
     "subtitle": "Your information and statistics",
+    "memberSince": "Member since",
+    "statistics": "Statistics",
+    "totalJobs": "Total Jobs",
+    "completed": "Completed",
+    "downloadedFiles": "Downloaded Files",
+    "favoriteCategories": "Favorite Categories",
+    "jobs": "jobs",
+    "totalSize": "Total Size",
+    "recentActivity": "Recent Activity",
     "info": {
       "title": "Account Information",
       "username": "Username",
@@ -147,7 +167,54 @@
     "previous": "Previous",
     "search": "Search",
     "filter": "Filter",
-    "clear": "Clear"
+    "clear": "Clear",
+    "status": {
+      "completed": "Completed",
+      "running": "Running",
+      "failed": "Failed",
+      "pending": "Pending"
+    }
+  },
+  "about": {
+    "title": "About",
+    "subtitle": "Advanced PDF scraping with elegant interface",
+    "description": "PDF Scraper is an advanced web application that enables automatic downloading of PDF documents from various sources including scientific publications, books, magazines and other resources. The application uses modern technologies for efficient and reliable document downloading.",
+    "featuresTitle": "Features",
+    "features": {
+      "multiSource": "Multiple source support",
+      "multiSourceDesc": "Scrape from different platforms (arXiv, PubMed, Gutenberg, Archive.org)",
+      "organized": "File organization",
+      "organizedDesc": "Automatic organization by categories",
+      "responsive": "Responsive design",
+      "responsiveDesc": "Works perfectly on all devices",
+      "userManagement": "User management",
+      "userManagementDesc": "Secure authentication with flask-login",
+      "multilang": "Multilingual",
+      "multilangDesc": "Full support for Serbian and English",
+      "darkLight": "Dark/Light theme",
+      "darkLightDesc": "Customize the interface to your preference"
+    },
+    "techTitle": "Technologies",
+    "openSource": "Open Source",
+    "openSourceDesc": "This project is open source and available on GitHub. Everyone is welcome to contribute to development, report bugs or suggest new features.",
+    "viewOnGithub": "View on GitHub",
+    "author": "Author",
+    "developerCreator": "Developer and creator of this application",
+    "supportTitle": "Support the project",
+    "supportDesc": "If you like this project and want to support development, you can do so through a donation. Every support is welcome and helps maintain and improve the application.",
+    "donateBtn": "Donate via PayPal",
+    "donateThankYou": "Thank you for your support! ❤️",
+    "versionTitle": "Version",
+    "versionApp": "Application:",
+    "versionPython": "Python:",
+    "versionFlask": "Flask:",
+    "versionBootstrap": "Bootstrap:",
+    "versionCrawlee": "Crawlee:",
+    "versionStatus": "Status:",
+    "versionStatusActive": "Active",
+    "versionLicense": "License:",
+    "versionReleased": "Released: October 2024",
+    "back": "Back to Dashboard"
   },
   "footer": {
     "copyright": "© 2025 PDF Scraper. All rights reserved."

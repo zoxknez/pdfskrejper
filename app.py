@@ -32,6 +32,7 @@ from web.forms import LoginForm, RegisterForm, ScrapingForm
 from web.tasks import run_scraping_task
 from config.settings import Settings
 from config.sources import SourceType, get_sources_by_type
+import time
 
 # Kreiraj Flask app
 app = Flask(__name__)
@@ -40,6 +41,14 @@ app.config["SECRET_KEY"] = os.getenv(
 )
 app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///pdf_scraper.db"
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
+
+
+# Cache busting - force browser to reload static files
+@app.context_processor
+def inject_cache_buster():
+    """Add cache buster timestamp to templates"""
+    return {"cache_bust": int(time.time())}
+
 
 # Inicijalizuj ekstenzije
 db.init_app(app)
@@ -450,6 +459,12 @@ def serve_locale(lang):
 
     with open(locale_path, "r", encoding="utf-8") as f:
         return jsonify(json.load(f))
+
+
+@app.route("/about")
+def about():
+    """About page - O programu."""
+    return render_template("about.html")
 
 
 @app.route("/test-theme")

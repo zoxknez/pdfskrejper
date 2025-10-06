@@ -34,48 +34,64 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav me-auto">
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ url_for('dashboard') }}">
-                            <i class="bi bi-speedometer2"></i> <span data-i18n="nav.dashboard">Dashboard</span>
+                        <a class="nav-link nav-link-enhanced" href="{{ url_for('dashboard') }}">
+                            <i class="bi bi-speedometer2 nav-icon"></i> 
+                            <span class="nav-text" data-i18n="nav.dashboard">Dashboard</span>
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ url_for('scrape') }}">
-                            <i class="bi bi-play-circle-fill"></i> <span data-i18n="nav.scrape">Novi Scraping</span>
+                        <a class="nav-link nav-link-enhanced" href="{{ url_for('scrape') }}">
+                            <i class="bi bi-play-circle-fill nav-icon"></i> 
+                            <span class="nav-text" data-i18n="nav.scrape">Novi Scraping</span>
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ url_for('files') }}">
-                            <i class="bi bi-folder2-open"></i> <span data-i18n="nav.files">Moji Fajlovi</span>
+                        <a class="nav-link nav-link-enhanced" href="{{ url_for('files') }}">
+                            <i class="bi bi-folder2-open nav-icon"></i> 
+                            <span class="nav-text" data-i18n="nav.files">Moji Fajlovi</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link nav-link-enhanced" href="{{ url_for('about') }}">
+                            <i class="bi bi-info-circle nav-icon"></i> 
+                            <span class="nav-text" data-i18n="nav.about">O programu</span>
                         </a>
                     </li>
                 </ul>
-                <ul class="navbar-nav">
+                <ul class="navbar-nav navbar-nav-icons">
                     <!-- Theme Toggle -->
                     <li class="nav-item">
-                        <a class="nav-link" href="#" id="themeToggle" title="Toggle theme">
-                            <i class="bi bi-sun-fill" id="themeIcon"></i>
+                        <a class="nav-link nav-icon-btn" href="#" id="themeToggle" title="Promena Teme">
+                            <i class="bi bi-sun-fill icon-large" id="themeIcon"></i>
                         </a>
                     </li>
                     <!-- Language Toggle -->
                     <li class="nav-item">
-                        <a class="nav-link" href="#" id="langToggle" title="Change language">
-                            <span id="langFlag">🇷🇸</span>
+                        <a class="nav-link nav-icon-btn nav-lang-btn" href="#" id="langToggle" title="Promena Jezika">
+                            <span id="langFlag" class="lang-badge">SRB</span>
                         </a>
                     </li>
                     <!-- User Dropdown -->
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
-                            <i class="bi bi-person-circle"></i> {{ current_user.username }}
+                        <a class="nav-link nav-icon-btn dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
+                            <i class="bi bi-person-circle icon-large"></i> 
+                            <span class="username-text">{{ current_user.username }}</span>
                         </a>
-                        <ul class="dropdown-menu dropdown-menu-end">
+                        <ul class="dropdown-menu dropdown-menu-end dropdown-modern">
                             <li><a class="dropdown-item" href="{{ url_for('profile') }}">
-                                <i class="bi bi-person-fill"></i> <span data-i18n="nav.profile">Profil</span>
+                                <i class="bi bi-person-fill me-2"></i> <span data-i18n="nav.profile">Profil</span>
                             </a></li>
                             <li><hr class="dropdown-divider"></li>
                             <li><a class="dropdown-item" href="{{ url_for('logout') }}">
-                                <i class="bi bi-box-arrow-right"></i> <span data-i18n="nav.logout">Odjavi se</span>
+                                <i class="bi bi-box-arrow-right me-2"></i> <span data-i18n="nav.logout">Odjavi se</span>
                             </a></li>
                         </ul>
+                    </li>
+                    <!-- Logout Icon (Direct) -->
+                    <li class="nav-item">
+                        <a class="nav-link nav-icon-btn nav-logout-btn" href="{{ url_for('logout') }}" title="Odjavi se">
+                            <i class="bi bi-box-arrow-right icon-large"></i>
+                        </a>
                     </li>
                 </ul>
             </div>
@@ -104,10 +120,33 @@
     
     <!-- Footer -->
     <footer class="footer mt-auto py-4">
-        <div class="container text-center">
-            <span class="text-white fw-semibold">
-                <span data-i18n="footer.copyright">© 2025 PDF Skrejper. Sva prava zadržana.</span> | Napravljeno sa <i class="bi bi-heart-fill text-danger"></i>
-            </span>
+        <div class="container">
+            <div class="d-flex justify-content-between align-items-center flex-wrap gap-3">
+                <!-- Copyright -->
+                <div class="footer-copyright">
+                    <i class="bi bi-c-circle me-2"></i>
+                    <span data-i18n="footer.copyright">2025 PDF Skrejper. Sva prava zadržana.</span>
+                </div>
+                
+                <!-- Social Links -->
+                <div class="footer-social-links">
+                    <!-- GitHub -->
+                    <a href="https://github.com/zoxknez" target="_blank" class="footer-social-link footer-github" title="GitHub">
+                        <i class="bi bi-github"></i>
+                        <span class="social-tooltip">GitHub</span>
+                    </a>
+                    <!-- Email -->
+                    <a href="mailto:zoxknez@hotmail.com" class="footer-social-link footer-email" title="Email">
+                        <i class="bi bi-envelope-fill"></i>
+                        <span class="social-tooltip">Email</span>
+                    </a>
+                    <!-- PayPal Donation -->
+                    <a href="https://www.paypal.com/paypalme/o0o0o0o0o0o0o" target="_blank" class="footer-social-link footer-paypal" title="Doniraj">
+                        <i class="bi bi-paypal"></i>
+                        <span class="social-tooltip">Doniraj</span>
+                    </a>
+                </div>
+            </div>
         </div>
     </footer>
     

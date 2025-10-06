@@ -33,6 +33,7 @@
   "dashboard": {
     "title": "Kontrolna Tabla",
     "subtitle": "Pregled vaših aktivnosti",
+    "welcome": "Dobrodošli nazad",
     "stats": {
       "totalJobs": "Ukupno Poslova",
       "completed": "Završeno",
@@ -52,7 +53,8 @@
       "actions": "Akcije",
       "view": "Pogledaj",
       "empty": "Još uvek nemate poslove skrejpovanja",
-      "startFirst": "Počnite prvo skrejpovanje"
+      "startFirst": "Pokrenite prvi scraping i počnite sa preuzimanjem PDF dokumenata!",
+      "startButton": "Pokrenite Prvi Scraping"
     }
   },
   "scrape": {
@@ -70,28 +72,30 @@
     },
     "step3": {
       "title": "3. Kriterijum Pretrage (opciono)",
-      "placeholder": "npr. machine learning, python..."
+      "placeholder": "npr. machine learning, python...",
+      "help": "Unesite ključne reči za pretragu (npr. \"machine learning\", \"python\")"
     },
     "step4": {
-      "title": "4. Broj Rezultata"
+      "title": "4. Broj Rezultata",
+      "help": "Maksimalan broj PDF fajlova za preuzimanje (1-500)"
     },
     "submit": "Pokreni Skrejpovanje",
     "help": {
       "title": "Pomoć",
       "howItWorks": "Kako radi scraping?",
       "steps": {
-        "1": "Izaberite kategoriju dokumenata",
-        "2": "Odaberite izvor podataka",
-        "3": "Opcionalno unesite pretragu",
-        "4": "Postavite broj rezultata",
-        "5": "Pokrenite scraping"
+        "step1": "Izaberite kategoriju dokumenata",
+        "step2": "Odaberite izvor podataka",
+        "step3": "Opcionalno unesite pretragu",
+        "step4": "Postavite broj rezultata",
+        "step5": "Pokrenite scraping"
       },
-      "sources": {
-        "title": "Dostupni izvori:",
-        "arxiv": "arXiv - Naučni radovi",
-        "pubmed": "PubMed - Medicinski članci",
-        "gutenberg": "Gutenberg - Besplatne knjige",
-        "archive": "Archive.org - Časopisi"
+      "sources": "Dostupni izvori:",
+      "sourceDesc": {
+        "arxiv": "Naučni radovi",
+        "pubmed": "Medicinski članci",
+        "gutenberg": "Besplatne knjige",
+        "archive": "Časopisi"
       }
     }
   },
@@ -100,9 +104,12 @@
     "subtitle": "Svi vaši preuzeti PDF-ovi",
     "filter": {
       "category": "Kategorija",
+      "all": "Sve kategorije",
       "allCategories": "Sve kategorije",
-      "search": "Pretraži fajlove...",
-      "submit": "Filtriraj"
+      "search": "Pretraga",
+      "searchPlaceholder": "Pretraži po imenu fajla...",
+      "submit": "Filtriraj",
+      "submitText": "Filtriraj"
     },
     "total": "Ukupno",
     "filesCount": "fajlova",
@@ -111,8 +118,12 @@
       "category": "Kategorija",
       "size": "Veličina",
       "date": "Datum",
-      "actions": "Akcije",
-      "download": "Preuzmi"
+      "actions": "Akcije"
+    },
+    "actions": {
+      "download": "Preuzmi",
+      "copy": "Kopiraj Putanju",
+      "delete": "Obriši"
     },
     "empty": {
       "title": "Još uvek nemate fajlove",
@@ -123,6 +134,15 @@
   "profile": {
     "title": "Profil",
     "subtitle": "Vaši podaci i statistika",
+    "memberSince": "Član od",
+    "statistics": "Statistika",
+    "totalJobs": "Ukupno Job-ova",
+    "completed": "Završeno",
+    "downloadedFiles": "Preuzeto Fajlova",
+    "favoriteCategories": "Omiljene Kategorije",
+    "jobs": "job-ova",
+    "totalSize": "Ukupna Veličina",
+    "recentActivity": "Nedavna Aktivnost",
     "info": {
       "title": "Informacije o Nalogu",
       "username": "Korisničko ime",
@@ -147,7 +167,54 @@
     "previous": "Prethodno",
     "search": "Pretraži",
     "filter": "Filtriraj",
-    "clear": "Očisti"
+    "clear": "Očisti",
+    "status": {
+      "completed": "Završeno",
+      "running": "U toku",
+      "failed": "Neuspešno",
+      "pending": "Na čekanju"
+    }
+  },
+  "about": {
+    "title": "O Programu",
+    "subtitle": "Napredno skrejpovanje PDF fajlova sa elegantnim interfejsom",
+    "description": "PDF Scraper je napredna web aplikacija koja omogućava automatsko preuzimanje PDF dokumenata sa različitih izvora uključujući naučne publikacije, knjige, časopise i ostale resurse. Aplikacija koristi moderne tehnologije za efikasno i pouzdano preuzimanje dokumenata.",
+    "featuresTitle": "Karakteristike",
+    "features": {
+      "multiSource": "Podrška za više izvora",
+      "multiSourceDesc": "Skrejpujte sa različitih platforma (arXiv, PubMed, Gutenberg, Archive.org)",
+      "organized": "Organizacija fajlova",
+      "organizedDesc": "Automatsko organizovanje po kategorijama",
+      "responsive": "Responsive dizajn",
+      "responsiveDesc": "Savršeno radi na svim uređajima",
+      "userManagement": "Upravljanje korisnicima",
+      "userManagementDesc": "Sigurna autentifikacija sa flask-login",
+      "multilang": "Višejezičnost",
+      "multilangDesc": "Potpuna podrška za srpski i engleski jezik",
+      "darkLight": "Dark/Light tema",
+      "darkLightDesc": "Prilagodite interfejs po svojoj želji"
+    },
+    "techTitle": "Tehnologije",
+    "openSource": "Open Source",
+    "openSourceDesc": "Ovaj projekat je open source i dostupan na GitHub-u. Svi su dobrodošli da doprinesu razvoju, prijave greške ili predlože nove funkcionalnosti.",
+    "viewOnGithub": "Pogledaj na GitHub-u",
+    "author": "Autor",
+    "developerCreator": "Developer i kreator ove aplikacije",
+    "supportTitle": "Podrži projekat",
+    "supportDesc": "Ako ti se dopada ovaj projekat i želiš da podržiš razvoj, možeš to učiniti putem donacije. Svaka podrška je dobrodošla i pomaže u održavanju i unapređenju aplikacije.",
+    "donateBtn": "Doniraj via PayPal",
+    "donateThankYou": "Hvala na podršci! ❤️",
+    "versionTitle": "Verzija",
+    "versionApp": "Aplikacija:",
+    "versionPython": "Python:",
+    "versionFlask": "Flask:",
+    "versionBootstrap": "Bootstrap:",
+    "versionCrawlee": "Crawlee:",
+    "versionStatus": "Status:",
+    "versionStatusActive": "Aktivan",
+    "versionLicense": "Licenca:",
+    "versionReleased": "Objavljena: Oktobar 2024",
+    "back": "Nazad na Dashboard"
   },
   "footer": {
     "copyright": "© 2025 PDF Skrejper. Sva prava zadržana."
